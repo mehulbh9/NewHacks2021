@@ -7,6 +7,17 @@ def makeDay(name):
     day = Day(name)
     return day
 
+def checkInt(str):
+    temp = 0
+    try:
+        temp = int(str)
+        return temp
+    except ValueError:
+        print("Error: invalid input")
+        return 0
+    
+
+
 def main():
     namesOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     daysOfTheWeek = []
