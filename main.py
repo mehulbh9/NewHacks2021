@@ -151,21 +151,23 @@ def main():
                         print("This course does not exist. Please enter a valid course.")
                     else:
                         break
-                print("Are you sure you want to delete this course?")
-                try: 
-                    delete_course = str(input("Enter yes or no : ")).lower()
-                except ValueError: 
-                    print("Please enter yes or no")
-                    continue
-                if (delete_course == "yes"):
-                    for course in courses: 
-                        if (course.name == name):
-                            courses.remove(course)
-                            break
-                elif (delete_course == "no"):
-                    break
-                else:
-                    print("Please enter yes or no")
+                
+                print("Are you sure you want to delete the course", name, "?")
+                while True:
+                    try: 
+                        delete_course = str(input("Enter yes or no : ")).lower()
+                    except ValueError: 
+                        print("Please enter yes or no")
+                        continue
+                    if (delete_course == "yes"):
+                        for course in courses: 
+                            if (course.name == name):
+                                courses.remove(course)
+                                break
+                    elif (delete_course == "no"):
+                        break
+                    else:
+                        print("Please enter yes or no")
             else:
                 print("Please enter a valid command. Use the command \'help\'.")
 
@@ -251,7 +253,56 @@ def main():
                 courses[course_index].assignments.append(Assignment(name, datetime(year, month, day)))
                 
             elif (commandList[1] == "delete"):
-                pass
+                print("You currently have the following courses: ")
+                for i in range(0, len(courses)): 
+                    print ((i + 1), ".", (courses[i].name))
+                while True:
+                    try: 
+                        course_index = int(input("Indicate the number of the coure you would like to delete an assignment from : ")) - 1
+                    except ValueError:
+                        print("Please enter a valid number between 1 and", len(courses))
+                        continue
+                    if (course_index < 0 or course_index >= len(courses)):
+                        print("Please enter a valid number between 1 and", len(courses))
+                    else: 
+                        break
+                
+                if (len(courses[course_index]) == 0):
+                    print("There are no assignments in this course.")
+                    break
+
+                while True:
+                    try:
+                        name = str(input("What is the name of the assignment? : "))
+                    except ValueError:
+                        print("Invalid input. Please enter a string.")
+                        continue
+                    already_exists = False
+                    for assignment in courses[course_index].assignments:
+                        if (assignment.name == name):
+                            already_exists = True
+                            break
+                    if (not(already_exists)):
+                        print("This assignment does not exist. Please enter a valid assignment.")
+                    else:
+                        break
+
+                print("Are you sure you want to delete the assignment", name, "?")
+                while True:
+                    try: 
+                        delete_assignment = str(input("Enter yes or no : ")).lower()
+                    except ValueError: 
+                        print("Please enter yes or no")
+                        continue
+                    if (delete_assignment == "yes"):
+                        for assignment in courses[course_index].assignments: 
+                            if (assignment.name == name):
+                                courses[course_index].assignments.remove(assignment)
+                                break
+                    elif (delete_assignment == "no"):
+                        break
+                    else:
+                        print("Please enter yes or no")
             else :
                 print("Please enter a valid command. Use the command \'help\'")
 
@@ -263,7 +314,75 @@ def main():
                 print("You currently have the following courses: ")
                 for i in range(0, len(courses)): 
                     print ((i + 1), ".", (courses[i].name))
-                print("Indicate the number of the course that this exam belongs to : ")
+                while True:
+                    try: 
+                        course_index = int(input("Indicate the number of the course that this assignment belongs to : ")) - 1
+                    except ValueError:
+                        print("Please enter a valid number between 1 and", len(courses))
+                        continue
+                    if (course_index < 0 or course_index >= len(courses)):
+                        print("Please enter a valid number between 1 and", len(courses))
+                    else: 
+                        break
+                
+                while True:
+                    try:
+                        name = str(input("What is the name of the assignment? : "))
+                    except ValueError:
+                        print("Invalid input. Please enter a string.")
+                        continue
+                    already_exists = False
+                    for assignment in courses[course_index].assignments:
+                        if (assignment.name == name):
+                            already_exists = True
+                            break
+                    if (already_exists):
+                        print("An assignment with this name already exists, please enter a new assignment.")
+                    else:
+                        break
+
+                print("When is the assignment due?")
+                while True:
+                    try:
+                        month = int(input("Enter the month number : "))
+                    except ValueError:
+                        print("Please enter a valid number.")
+                    if (month < 1 or month > 12):
+                        print("Please enter a number between 1 and 12.")
+                    else:
+                        break
+                    
+                while True:
+                    try: 
+                        date = int(input("Enter the date : "))
+                    except ValueError:
+                        print("Please enter a valid number.")
+                        continue
+                    if (month == 2):
+                        if (date < 1 or date > 28):
+                            print("Please enter a date between 1 and 28")
+                        else:
+                            break
+                    elif (month == 4 or month == 6 or month == 9 or month == 11):
+                        if (date < 1 or date > 30):
+                            print("Please enter a date between 1 and 30")
+                        else:
+                            break
+                    else:
+                        if (date < 1 or date > 31):
+                            print("Please enter a date between 1 and 31")
+                        else:
+                            break
+                
+                while True:
+                    try:
+                        year = int(input("Enter the month number : "))
+                    except ValueError:
+                        print("Please enter a valid number.")
+                    if (year < 2021 or year > 2022):
+                        print("Please enter whether the exam is in 2021 or 2022.")
+                    else:
+                        break
 
                 
             elif (commandList[1] == "delete"):
