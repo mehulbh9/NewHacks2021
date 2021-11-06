@@ -16,7 +16,8 @@ def main():
 
     while(True):
         command = input()
-        keyword = command.split()[0]
+        commandList = command.split();
+        keyword = commandList[0]
         
         if (True): #course
             pass
