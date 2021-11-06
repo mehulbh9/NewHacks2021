@@ -84,10 +84,10 @@ def main():
                     try: 
                         difficulty = int(input("What would you say the difficulty of the course is out of 5? : "))
                     except ValueError:
-                        print("Please enter a number between 0 and 5.")
+                        print("Please enter a number between 1 and 5.")
                     
                     if (difficulty < 0 or difficulty > 5):
-                        print("Please enter a number between 0 and 5.")
+                        print("Please enter a number between 1 and 5.")
                     else:
                         break
                 courses.append(Course(name, priority, difficulty))
@@ -124,12 +124,26 @@ def main():
                 else:
                     print("Please enter yes or no")
             else:
-                print("Please enter a valid command. Use the command help.")
+                print("Please enter a valid command. Use the command \'help\'.")
 
                 
                 
         elif (keyword == "assignment"): #assignment
-            pass
+            if (commandList[1] == "add"):
+                pass
+            elif (commandList[1] == "delete"):
+                pass
+            else :
+                print("Please enter a valid command. Use the command \'help\'")
+
+        elif (keyword == "exam"):
+            if (commandList[1] == "add"):
+                pass
+            elif (commandList[1] == "delete"):
+                pass
+            else :
+                print("Please enter a valid command. Use the command \'help\'")
+
         elif(keyword == "time"): #time
 
             output = 0

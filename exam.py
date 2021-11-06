@@ -1,12 +1,11 @@
+import datetime
+
 class Exam:
     weight = 0
-    importance = 0
-    studyTime = 0
-    course = ""
-    day = None
-    def __init__(self, weight, importance, study_time, course, day):
+    study_time = 0
+    date = datetime(0,0,0)
+
+    def __init__(self, weight, study_time, date):
         self.weight = weight
-        self.importance = importance
-        self.studyTime = study_time
-        self.day = day
-        self.course = course
+        self.study_time = study_time
+        self.date = date

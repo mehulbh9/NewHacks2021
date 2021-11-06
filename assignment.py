@@ -1,18 +1,13 @@
+import datetime
+
 class Assignment:
 
-    name=""
-    course=""
-    difficulty= 4
-    date = 9
+    name = ""
+    duedate = datetime(0,0,0)
 
-    def __init__(self, name, course):
+    def __init__(self, name, due_date):
         self.name = name
-        self.course
+        self.duedate = due_date
 
-    def difficulty(self, difficulty):
-        self.difficulty = difficulty
-
-    def due_date(self, date):
-        self.date = date
         
     
