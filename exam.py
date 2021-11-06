@@ -3,7 +3,7 @@ import datetime
 class Exam:
     weight = 0
     study_time = 0
-    date = datetime(0,0,0)
+    date = datetime.datetime(1,1,1)
 
     def __init__(self, weight, study_time, date):
         self.weight = weight
