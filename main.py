@@ -20,10 +20,10 @@ def checkIntandPass(str, output):
 
 
 def main():
-    namesOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-    daysOfTheWeek = []
-    courses = []
-    exit = False
+    namesOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] #array of names of the week in string
+    daysOfTheWeek = [] #array of Day objects
+    courses = [] #array of Course objects
+    exit = False #whether or not while loop continues
 
     for name in namesOfTheWeek:
         daysOfTheWeek.append(makeDay(name))
