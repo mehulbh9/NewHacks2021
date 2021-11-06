@@ -29,10 +29,14 @@ def main():
         daysOfTheWeek.append(makeDay(name))
 
     while(not exit):
-        command = input()
+        try : 
+            command = str(input("Enter a command : "))
+        except ValueError:
+            print("Enter a valid command.")
+            continue
+
         commandList = command.split()
         keyword = commandList[0]
-        
         
         if (keyword == "course"): #course
             if (commandList[1] == "add"):
