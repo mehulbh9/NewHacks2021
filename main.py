@@ -207,12 +207,24 @@ def main():
                     else:
                         break
 
+                while True:
+                    try: 
+                        time = int(input("In minutes, how long do you think the assignment will take to complete? : "))
+                    except ValueError:
+                        print("Please enter a valid number.")
+                        continue
+                    if (time < 0 or time > 1440):
+                        print("Please enter a valid amount of time under that of a day.")
+                    else:
+                        break
+
                 print("When is the assignment due?")
                 while True:
                     try:
                         month = int(input("Enter the month number : "))
                     except ValueError:
                         print("Please enter a valid number.")
+                        continue
                     if (month < 1 or month > 12):
                         print("Please enter a number between 1 and 12.")
                     else:
@@ -250,7 +262,7 @@ def main():
                     else:
                         break
 
-                courses[course_index].assignments.append(Assignment(name, datetime(year, month, day)))
+                courses[course_index].assignments.append(Assignment(name, datetime(year, month, day), time))
                 
             elif (commandList[1] == "delete"):
                 print("You currently have the following courses: ")
@@ -316,7 +328,7 @@ def main():
                     print ((i + 1), ".", (courses[i].name))
                 while True:
                     try: 
-                        course_index = int(input("Indicate the number of the course that this assignment belongs to : ")) - 1
+                        course_index = int(input("Indicate the number of the course that this exam belongs to : ")) - 1
                     except ValueError:
                         print("Please enter a valid number between 1 and", len(courses))
                         continue
@@ -327,31 +339,54 @@ def main():
                 
                 while True:
                     try:
-                        name = str(input("What is the name of the assignment? : "))
+                        name = str(input("What is the name of the exam? : "))
                     except ValueError:
                         print("Invalid input. Please enter a string.")
                         continue
                     already_exists = False
-                    for assignment in courses[course_index].assignments:
-                        if (assignment.name == name):
+                    for exam in courses[course_index].exams:
+                        if (exam.name == name):
                             already_exists = True
                             break
                     if (already_exists):
-                        print("An assignment with this name already exists, please enter a new assignment.")
+                        print("An exam with this name already exists, please enter a new exam.")
                     else:
                         break
 
-                print("When is the assignment due?")
+                while True:
+                    try:
+                        weight = float(input("What is the weight of this exam? : "))
+                    except ValueError:
+                        print("Please enter a valid number greater than 0 and less than 100")
+                        continue
+                    if (weight <= 0 or weight >= 100):
+                        print("Please enter a valid number greater than 0 and less than 100")
+                    else:
+                        break
+
+                while True:
+                    try: 
+                        time = int(input("In minutes, how long do you think you should study for the exam? : "))
+                    except ValueError:
+                        print("Please enter a valid number.")
+                        continue
+                    if (time < 0 or time > 1440):
+                        print("Please enter a valid amount of time under that of a day.")
+                    else:
+                        break
+
+                print("When is the exam?")
                 while True:
                     try:
                         month = int(input("Enter the month number : "))
                     except ValueError:
                         print("Please enter a valid number.")
+                        continue
                     if (month < 1 or month > 12):
                         print("Please enter a number between 1 and 12.")
                     else:
                         break
-                    
+
                 while True:
                     try: 
                         date = int(input("Enter the date : "))
@@ -384,9 +419,59 @@ def main():
                     else:
                         break
 
+                courses[course_index].exams.append(Exam(name, weight, time, datetime(year, month, day)))
                 
             elif (commandList[1] == "delete"):
-                pass
+                print("You currently have the following courses: ")
+                for i in range(0, len(courses)): 
+                    print ((i + 1), ".", (courses[i].name))
+                while True:
+                    try: 
+                        course_index = int(input("Indicate the number of the coure you would like to delete an exam from : ")) - 1
+                    except ValueError:
+                        print("Please enter a valid number between 1 and", len(courses))
+                        continue
+                    if (course_index < 0 or course_index >= len(courses)):
+                        print("Please enter a valid number between 1 and", len(courses))
+                    else: 
+                        break
+                
+                if (len(courses[course_index]) == 0):
+                    print("There are no exams in this course.")
+                    break
+
+                while True:
+                    try:
+                        name = str(input("What is the name of the exam? : "))
+                    except ValueError:
+                        print("Invalid input. Please enter a string.")
+                        continue
+                    already_exists = False
+                    for exam in courses[course_index].exams:
+                        if (exam.name == name):
+                            already_exists = True
+                            break
+                    if (not(already_exists)):
+                        print("This exam does not exist. Please enter a valid exam.")
+                    else:
+                        break
+
+                print("Are you sure you want to delete the exam", name, "?")
+                while True:
+                    try: 
+                        delete_exam = str(input("Enter yes or no : ")).lower()
+                    except ValueError: 
+                        print("Please enter yes or no")
+                        continue
+                    if (delete_exam == "yes"):
+                        for exam in courses[course_index].exams: 
+                            if (exam.name == name):
+                                courses[course_index].exams.remove(exam)
+                                break
+                    elif (delete_exam == "no"):
+                        break
+                    else:
+                        print("Please enter yes or no")
             else :
                 print("Please enter a valid command. Use the command \'help\'")
 
