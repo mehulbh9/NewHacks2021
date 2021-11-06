@@ -8,6 +8,7 @@ def readFile(fileName):
 
     list1 = line.split("*")
 
+    returnList = []
     for l1 in list1:
         list2 = l1.split("&")
         temp = Course(list2[0], list2[1], list2[2])
@@ -36,11 +37,8 @@ def readFile(fileName):
             day = int(examAttributes[4])
 
             tempExam = Exam(weight, importance, studytime, course, day)
-
-            temp.exams.append(tempExam)
-
-
-
+        returnList.append(temp)
+    return returnList
 
 #Sample Input: Math1234&1&1&HW1^Math1234^4^9,HW2^Eng1234^3^5&30^3^10^Math1234^8
-readFile("testFile.txt")
+myList = readFile("testFile.txt")
