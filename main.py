@@ -31,13 +31,13 @@ def main():
         keyword = commandList[0]
         
         if (True): #course
-            pass
+            
         elif (True): #assignment
-            pass
+            
         elif(True): #time
-            pass
+            
         elif (True): #print
-            pass
+            
     
 
 if __name__ == "__main__":
