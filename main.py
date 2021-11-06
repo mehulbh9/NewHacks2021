@@ -126,8 +126,6 @@ def main():
                 
         elif (keyword == "assignment"): #assignment
             pass
-        elif (commandList[1] == "delete"):
-            pass
         elif(keyword == "time"): #time
 
             output = 0
