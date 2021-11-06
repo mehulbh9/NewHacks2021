@@ -125,28 +125,20 @@ def main():
                 
                 
         elif (keyword == "assignment"): #assignment
-            if (commandList[1] == "add"):
-                i = 1
-                for course in courses:
-                    print(i+". "+course.name())
-                    i+=1
-                while ()
-                try:
-                    number = int(input("Enter the number of the course"))
-                except ValueError:
-                    print("Invalid value. Please enter a number between 1 and "+i)
-
-
-            elif (commandList[1] == "delete"):
-                pass
+            pass
+        elif (commandList[1] == "delete"):
+            pass
         elif(keyword == "time"): #time
+
             output = 0
             dateFound = False
             for day in daysOfTheWeek:
                 if (commandList[1] == day.name()):
                     dateFound = True
-                    checkIntandPass(commandList[2], output)
-                    day.setTotal(output)
+                    if (checkIntandPass(commandList[2], output)):
+                        day.setTotal(output)
+                    else:
+                        print("invalid input")
             if (not dateFound):
                 print("Error: invalid day")
                 
