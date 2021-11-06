@@ -1,4 +1,7 @@
+from assignment import Assignment
+from course import Course
 from day import Day
+from exam import Exam
 
 def makeDay(name):
     day = Day(name)
