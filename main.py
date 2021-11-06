@@ -79,7 +79,9 @@ def main():
                 print("Error: invalid day")
                 
         elif (keyword == "print"): #print
-            pass
+            for day in daysOfTheWeek:
+                if (day.name() == commandList[1]):
+                    
         elif (keyword == "exit"):
             exit = True
     
