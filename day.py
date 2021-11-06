@@ -9,4 +9,4 @@ class Day:
         self.name = dayofweek
 
     def __str__(self) -> str:
-        print ("The day", self.name, "has", self.timeTotal, "minutes free,", self.timeWork, "minutes of work, and", self.timeFree, "minutes Free.")
+        print (self.name, "has", str(self.timeWork).rjust(4), "minutes of work,", str(self.timeFree).rjust(4), "minutes of free. and", str(self.timeFree).rjust(4), "minutes Free.")
