@@ -7,15 +7,18 @@ def readFile(fileName):
     line = file.readline()
 
     list1 = line.split("*")
-    print(list1)
 
     for l1 in list1:
         list2 = l1.split("&")
+        temp = Course(list2[0], list2[1], list2[2])
+
         print("Name =", list2[0])
         print("Priority =", list2[1])
         print("Difficulty =", list2[2])
         print("Assignments =", list2[3])
         print("Exams =", list2[4])
 
+        list3 = list2[3].split(",")
+        print(list3)
 
 readFile("testFile.txt")
