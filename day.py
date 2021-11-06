@@ -10,3 +10,10 @@ class Day:
 
     def __str__(self) -> str:
         print (self.name, "has", str(self.timeWork).rjust(4), "minutes of work,", str(self.timeFree).rjust(4), "minutes of free. and", str(self.timeFree).rjust(4), "minutes Free.")
+
+    def setTotal(self, time):
+        
+        if (time >= 0 and time <= 1440):
+            self.timeTotal = time
+        else:
+            print("Error: minute has to be between 0 and 1440")
