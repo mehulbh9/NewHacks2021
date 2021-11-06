@@ -65,6 +65,9 @@ def main():
                 elif (helpcom == "list"):
                     print("Description: prints all the courses, assignments, and exams")
                     print("list ['course'/all]")
+                elif (helpcom == "exam"):
+                    print("Description: used to add or delete an exam from a course")
+                    print("exam [add/delete]")
                 
         elif (keyword == "course"): #course
             if (commandList[1] == "add"):
@@ -202,8 +205,11 @@ def main():
 
         elif (keyword == "list"):
             if (commandList[1] == "all"):
-                for course in courses:
-                    print(course)
+                if (len(courses) == 0):
+                    print("There are no courses")
+                else:
+                    for course in courses:
+                        print(course)
             else:
                 printed = False
                 for course in courses:
