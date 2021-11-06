@@ -15,5 +15,5 @@ class Course:
 
 
     def __str__(self) -> str:
-        string = "The course "+ self.name+ " has priority "+ self.priority+ " and difficulty "+ self.difficulty + "."
+        string = "The course "+ str(self.name)+ " has priority "+ str(self.priority)+ " and difficulty "+ str(self.difficulty) + "."
         return string
