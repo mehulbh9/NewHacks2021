@@ -17,10 +17,13 @@ def checkIntandPass(str, output):
         print("Error: invalid input")
         return False
     
-
+def printHelp():
+    print("type 'help [command]' to see arguments of [command]")
+    print("List of Commands: \nhelp \ncourse \nassignment \ntime \nprint \nlist")
 
 def main():
     namesOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] #array of names of the week in string
+    keywordList = ["help", "course", "assignment", "time", "print", "list"]
     daysOfTheWeek = [] #array of Day objects
     courses = [] #array of Course objects
     exit = False #whether or not while loop continues
@@ -37,10 +40,32 @@ def main():
 
         commandList = command.split()
         keyword = commandList[0]
-
-        input(">> ")
         
-        if (keyword == "course"): #course
+        if (keyword == "help"):
+            helpcom = commandList[1]
+            if (len(commandList) == 1):
+                printHelp()
+            else:
+                if (helpcom == "help"):
+                    print("Description: used to show format of other commands")
+                    print("help [command]")
+                elif (helpcom == "course"):
+                    print("Description: used to add or delete a course")
+                    print("course [add/delete]")
+                elif (helpcom == "assignment"):
+                    print("Description: used to add or delete an assignment from a course")
+                    print("assignment [add/delete]")
+                elif (helpcom == "time"):
+                    print("Description: used to set the total time available of a certain day of week")
+                    print("time [day of the week] [total time available]")
+                elif (helpcom == "print"):
+                    print("Description: prints the schedule of a day, or every day")
+                    print("print ['day'/all]")
+                elif (helpcom == "list"):
+                    print("Description: prints all the courses, assignments, and exams")
+                    print("list ['course'/all]")
+                
+        elif (keyword == "course"): #course
             if (commandList[1] == "add"):
                 while True:
                     try:
