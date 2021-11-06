@@ -22,23 +22,26 @@ def readFile(fileName):
             year = int(asnAttributes[1])
             month = int(asnAttributes[2])
             day = int(asnAttributes[3])
+            time = int(asnAttributes[4])
 
-            date = datetime(year, month, day)
+            date = datetime.datetime(year, month, day)
 
-            tempAssignment = Assignment(name, date)
+            tempAssignment = Assignment(name, date, time)
             temp.assignments.append(tempAssignment)
 
         list4 = list2[4].split(",")
+        print(list4)
         for exams in list4:
             examAttributes = exams.split("^")
 
             weight = int(examAttributes[0])
             studytime = int(examAttributes[1])
-            year = int(asnAttributes[2])
-            month = int(asnAttributes[3])
-            day = int(asnAttributes[4])
+            year = int(examAttributes[2])
+            month = int(examAttributes[3])
+            day = int(examAttributes[4])
 
-            date = datetime(year, month, day)
+            print(year, month, day)
+            date = datetime.datetime(year, month, day)
 
             tempExam = Exam(weight, studytime, date)
             temp.exams.append(tempExam)
