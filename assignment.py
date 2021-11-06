@@ -2,8 +2,8 @@ class Assignment:
 
     name=""
     course=""
-    difficulty= 4
-    date = 9
+    difficulty= 0
+    date = 0
 
     def __init__(self, name, course):
         self.name = name
