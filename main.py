@@ -37,6 +37,8 @@ def main():
 
         commandList = command.split()
         keyword = commandList[0]
+
+        input(">> ")
         
         if (keyword == "course"): #course
             if (commandList[1] == "add"):
