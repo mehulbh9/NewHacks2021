@@ -21,23 +21,27 @@ def checkInt(str):
 def main():
     namesOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     daysOfTheWeek = []
+    exit = False
 
     for name in namesOfTheWeek:
         daysOfTheWeek.append(makeDay(name))
 
-    while(True):
+    while(not exit):
         command = input()
-        commandList = command.split();
+        commandList = command.split()
         keyword = commandList[0]
         
-        if (True): #course
+        
+        if (keyword == "course"): #course
             pass
-        elif (True): #assignment
+        elif (keyword == "assignment"): #assignment
             pass
-        elif(True): #time
+        elif(keyword == "time"): #time
             pass
-        elif (True): #print
+        elif (keyword == "print"): #print
             pass
+        elif (keyword == "exit"):
+            exit = True
     
 
 if __name__ == "__main__":
