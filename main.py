@@ -35,30 +35,94 @@ def main():
         
         
         if (keyword == "course"): #course
-            action = commandList[1]
-            if (action == "add"):
+            if (commandList[1] == "add"):
                 while True:
                     try:
-                        name = str(input("What is the name of the course?"))
-                        break
+                        name = str(input("What is the name of the course? : "))
                     except ValueError:
-                        print("Invalid value. Please enter a string.")
-                while True:
-                    try: 
-                        difficulty = int(input("What would you say the difficulty of the course is out of 5?"))
-                    except ValueError:
-                        print("Please enter a number between 0 and 5.")
-                    
-                    if (difficulty < 0 or difficulty > 5):
-                        print("Please enter a number between 0 and 5.")
-                    else :
+                        print("Invalid input. Please enter a string.")
+                        continue
+                    already_exists = False
+                    for course in courses:
+                        if (course.name == name):
+                            already_exists = True
+                            break
+                    if (already_exists):
+                        print("A course with this name already exists, please enter a new course.")
+                    else:
                         break
                 if (len(courses) == 0):
                     priority = 0; 
                 else :
                     print("You currently have the following courses: ")
+                    for i in range(0, len(courses)): 
+                        print ((i + 1), ".", (courses[i].name))
+                    print("Does the following course have lower, the same, or higher priority compared to your other courses?")
+                    while True:
+                        try:
+                            str_priority = str(input("Enter the priority (low, same, or high) : ")).lower()
+                        except ValueError:
+                            print("Please enter low, same, or high.")
+                            continue
+                        if (str_priority == "low"):
+                            priority = 1
+                            break
+                        elif (str_priority == "same"):
+                            priority = 2
+                            break
+                        elif (str_priority == "high"):
+                            priority = 3
+                            break
+                        else: 
+                            print("Please enter low, same, or high.")
+                    
+                while True:
+                    try: 
+                        difficulty = int(input("What would you say the difficulty of the course is out of 5? : "))
+                    except ValueError:
+                        print("Please enter a number between 0 and 5.")
+                    
+                    if (difficulty < 0 or difficulty > 5):
+                        print("Please enter a number between 0 and 5.")
+                    else:
+                        break
+                courses.append(Course(name, priority, difficulty))
+
+            elif (commandList[1] == "delete"):
+                while True:
+                    try:
+                        name = str(input("What is the name of the course? : "))
+                    except ValueError:
+                        print("Invalid input. Please enter a string.")
+                        continue
+                    already_exists = False
+                    for course in courses:
+                        if (course.name == name):
+                            already_exists = True
+                            break
+                    if (not(already_exists)):
+                        print("This course does not exist. Please enter a valid course.")
+                    else:
+                        break
+                print("Are you sure you want to delete this course?")
+                try: 
+                    delete_course = str(input("Enter yes or no : ")).lower()
+                except ValueError: 
+                    print("Please enter yes or no")
+                    continue
+                if (delete_course == "yes"):
                     for course in courses: 
-                        print (course.name)
+                        if (course.name == name):
+                            courses.remove(course)
+                            break
+                elif (delete_course == "no"):
+                    break
+                else:
+                    print("Please enter yes or no")
+            else:
+                print("Please enter a valid command. Use the command help.")
+
+                
                 
         elif (keyword == "assignment"): #assignment
             pass
