@@ -15,13 +15,13 @@ def main():
         daysOfTheWeek.append(makeDay(name))
 
     while(True):
-        if (True):
+        if (True): #course
             pass
-        elif (True):
+        elif (True): #assignment
             pass
-        elif(True):
+        elif(True): #time
             pass
-        elif (True):
+        elif (True): #print
             pass
     
 
