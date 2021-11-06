@@ -8,10 +8,12 @@ def makeDay(name):
     return day
 
 def main():
-    daysOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    namesOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    daysOfTheWeek = []
 
-    for name in daysOfTheWeek:
-        makeDay(name)
+    for name in namesOfTheWeek:
+        daysOfTheWeek.append(makeDay(name))
     
+
 if __name__ == "__main__":
     main()
