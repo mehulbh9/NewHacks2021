@@ -17,11 +17,25 @@ def checkIntandPass(str, output):
     except ValueError:
         print("Error: invalid input")
         return False
-    
 
+def checkNumInputs(list, length):
+    if (len(list) < length):
+        print("Error: too few arguments")
+        return False
+    elif (len(list) > length):
+        print("Error: too many arguments")
+        return False
+    else:
+        return True
+
+    
+def printHelp():
+    print("type 'help [command]' to see arguments of [command]")
+    print("List of Commands: \nhelp \ncourse \nassignment \ntime \nprint \nlist")
 
 def main():
     namesOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] #array of names of the week in string
+    keywordList = ["help", "course", "assignment", "time", "print", "list"]
     daysOfTheWeek = [] #array of Day objects
     courses = [] #array of Course objects
     exit = False #whether or not while loop continues
@@ -31,17 +45,43 @@ def main():
 
     while(not exit):
         try : 
-            command = str(input("Enter a command : "))
+            command = str(input(">> "))
         except ValueError:
             print("Enter a valid command.")
             continue
 
         commandList = command.split()
         keyword = commandList[0]
-
-        input(">> ")
         
-        if (keyword == "course"): #course
+        if (keyword == "help"):
+            
+            if (len(commandList) == 1):
+                printHelp()
+            else:
+                helpcom = commandList[1]
+                if (helpcom == "help"):
+                    print("Description: used to show format of other commands")
+                    print("help [command]")
+                elif (helpcom == "course"):
+                    print("Description: used to add or delete a course")
+                    print("course [add/delete]")
+                elif (helpcom == "assignment"):
+                    print("Description: used to add or delete an assignment from a course")
+                    print("assignment [add/delete]")
+                elif (helpcom == "time"):
+                    print("Description: used to set the total time available of a certain day of week")
+                    print("time [day of the week] [total time available]")
+                elif (helpcom == "print"):
+                    print("Description: prints the schedule of a day, or every day")
+                    print("print ['day'/all]")
+                elif (helpcom == "list"):
+                    print("Description: prints all the courses, assignments, and exams")
+                    print("list ['course'/all]")
+                elif (helpcom == "exam"):
+                    print("Description: used to add or delete an exam from a course")
+                    print("exam [add/delete]")
+                
+        elif (keyword == "course"): #course
             if (commandList[1] == "add"):
                 while True:
                     try:
@@ -260,9 +300,13 @@ def main():
                     print("Error: invalid day")
 
         elif (keyword == "list"):
+
             if (commandList[1] == "all"):
-                for course in courses:
-                    print(course)
+                if (len(courses) == 0):
+                    print("There are no courses")
+                else:
+                    for course in courses:
+                        print(course)
             else:
                 printed = False
                 for course in courses:
