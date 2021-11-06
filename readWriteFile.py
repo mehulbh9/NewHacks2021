@@ -2,6 +2,7 @@ from assignment import Assignment
 from course import Course
 from day import Day
 from exam import Exam
+import datetime
 def readFile(fileName):
     file = open(fileName, "r", encoding = "UTF-8")
     line = file.readline()
@@ -16,29 +17,35 @@ def readFile(fileName):
         list3 = list2[3].split(",")
         for assignment in list3:
             asnAttributes = assignment.split("^")
+
             name = asnAttributes[0]
-            course = asnAttributes[1]
-            difficulty = int(asnAttributes[2])
-            date = int(asnAttributes[3])
+            year = int(asnAttributes[1])
+            month = int(asnAttributes[2])
+            day = int(asnAttributes[3])
 
-            tempAssignment = Assignment(name, course)
-            tempAssignment.difficulty = difficulty
-            tempAssignment.date = date
+            date = datetime(year, month, day)
 
+            tempAssignment = Assignment(name, date)
             temp.assignments.append(tempAssignment)
 
         list4 = list2[4].split(",")
         for exams in list4:
             examAttributes = exams.split("^")
-            weight = int(examAttributes[0])
-            importance = int(examAttributes[1])
-            studytime = int(examAttributes[2])
-            course = examAttributes[3]
-            day = int(examAttributes[4])
 
-            tempExam = Exam(weight, importance, studytime, course, day)
+            weight = int(examAttributes[0])
+            studytime = int(examAttributes[1])
+            year = int(asnAttributes[2])
+            month = int(asnAttributes[3])
+            day = int(asnAttributes[4])
+
+            date = datetime(year, month, day)
+
+            tempExam = Exam(weight, studytime, date)
+            temp.exams.append(tempExam)
+
         returnList.append(temp)
     return returnList
 
-#Sample Input: Math1234&1&1&HW1^Math1234^4^9,HW2^Eng1234^3^5&30^3^10^Math1234^8
+#Math1234&1&1&HW1^4^5^6,HW2^3^5^15&10^6^7^8^9
 myList = readFile("testFile.txt")
+print(myList[0])
