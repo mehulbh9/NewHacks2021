@@ -61,29 +61,63 @@ def main():
                         print (course.name)
                 
         elif (keyword == "assignment"): #assignment
-            pass
+            if (commandList[1] == "add"):
+                i = 1
+                for course in courses:
+                    print(i+". "+course.name())
+                    i+=1
+                while ()
+                try:
+                    number = int(input("Enter the number of the course"))
+                except ValueError:
+                    print("Invalid value. Please enter a number between 1 and "+i)
+
+
+            elif (commandList[1] == "delete"):
+                pass
         elif(keyword == "time"): #time
             output = 0
             dateFound = False
             for day in daysOfTheWeek:
                 if (commandList[1] == day.name()):
                     dateFound = True
-                    if (checkIntandPass(commandList[2], output)):
-                        if (output >= 0 and output <= 24):
-                            day.timeTotal = output
-                        else:
-                            print("Error: hour has to be between 0 and 24")
-                    else:
-                        print("Error: invalid input")
+                    checkIntandPass(commandList[2], output)
+                    day.setTotal(output)
             if (not dateFound):
                 print("Error: invalid day")
                 
         elif (keyword == "print"): #print
-            for day in daysOfTheWeek:
-                if (day.name() == commandList[1]):
-                    
+            if (commandList[1] == "all"):
+                for day in daysOfTheWeek:
+                    print(day)
+            else:
+                printDay = False
+                for day in daysOfTheWeek:
+                    if (day.name() == commandList[1]):
+                        print(day)
+                        printDay = True
+                        break
+                if (not printDay):
+                    print("Error: invalid day")
+
+        elif (keyword == "list"):
+            if (commandList[1] == "all"):
+                for course in courses:
+                    print(course)
+            else:
+                printed = False
+                for course in courses:
+                    if (commandList[1] == courses):
+                        print(course)
+                        printed = True
+                if (not printed):
+                    print("Error: course not found")
+
         elif (keyword == "exit"):
+            print("Goodbye")
             exit = True
+        
+        #recalculate function needed
     
 
 if __name__ == "__main__":
