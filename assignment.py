@@ -11,5 +11,10 @@ class Assignment:
         self.duedate = due_date
         self.time = time
 
-        
+    def getDay(self):
+        day = int(self.duedate.strftime("%j"))
+        if (day <= 120):
+            day += 366
+        return day
+
     
