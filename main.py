@@ -12,6 +12,6 @@ def main():
 
     for name in daysOfTheWeek:
         makeDay(name)
-    
+
 if __name__ == "__main__":
     main()
