@@ -21,4 +21,8 @@ The program contains many more features to increase productivity and manage time
 
 
 ### List of Commands
-
+help ...
+course [add/delete] ...
+assignment [add/delete] ...
+time ["day"] [hours]
+print ["day"/all]
