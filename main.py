@@ -16,6 +16,17 @@ def checkIntandPass(str, output):
     except ValueError:
         print("Error: invalid input")
         return False
+
+def checkNumInputs(list, length):
+    if (len(list) < length):
+        print("Error: too few arguments")
+        return False
+    elif (len(list) > length):
+        print("Error: too many arguments")
+        return False
+    else:
+        return True
+
     
 def printHelp():
     print("type 'help [command]' to see arguments of [command]")
@@ -204,6 +215,7 @@ def main():
                     print("Error: invalid day")
 
         elif (keyword == "list"):
+
             if (commandList[1] == "all"):
                 if (len(courses) == 0):
                     print("There are no courses")
