@@ -13,6 +13,16 @@ def main():
 
     for name in namesOfTheWeek:
         daysOfTheWeek.append(makeDay(name))
+
+    while(True):
+        if (True):
+            pass
+        elif (True):
+            pass
+        elif(True):
+            pass
+        elif (True):
+            pass
     
 
 if __name__ == "__main__":
