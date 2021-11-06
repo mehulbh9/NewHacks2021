@@ -30,17 +30,15 @@ def readFile(fileName):
             temp.assignments.append(tempAssignment)
 
         list4 = list2[4].split(",")
-        print(list4)
         for exams in list4:
             examAttributes = exams.split("^")
 
-            weight = int(examAttributes[0])
+            weight = float(examAttributes[0])
             studytime = int(examAttributes[1])
             year = int(examAttributes[2])
             month = int(examAttributes[3])
             day = int(examAttributes[4])
 
-            print(year, month, day)
             date = datetime.datetime(year, month, day)
 
             tempExam = Exam(weight, studytime, date)
