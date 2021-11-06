@@ -33,7 +33,7 @@ def main():
 
     while(not exit):
         try : 
-            command = str(input("Enter a command : "))
+            command = str(input(">> "))
         except ValueError:
             print("Enter a valid command.")
             continue
@@ -42,10 +42,11 @@ def main():
         keyword = commandList[0]
         
         if (keyword == "help"):
-            helpcom = commandList[1]
+            
             if (len(commandList) == 1):
                 printHelp()
             else:
+                helpcom = commandList[1]
                 if (helpcom == "help"):
                     print("Description: used to show format of other commands")
                     print("help [command]")
