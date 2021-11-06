@@ -1,3 +1,4 @@
+import datetime
 from assignment import Assignment
 from course import Course
 from day import Day
@@ -128,19 +129,103 @@ def main():
             else:
                 print("Please enter a valid command. Use the command \'help\'.")
 
-                
-                
+                    
         elif (keyword == "assignment"): #assignment
+            if (len(courses) == 0):
+                print("You do not have any courses. Please make a course first.") 
+                continue
             if (commandList[1] == "add"):
-                pass
+                print("You currently have the following courses: ")
+                for i in range(0, len(courses)): 
+                    print ((i + 1), ".", (courses[i].name))
+                while True:
+                    try: 
+                        course_index = int(input("Indicate the number of the course that this assignment belongs to : ")) - 1
+                    except ValueError:
+                        print("Please enter a valid number between 1 and", len(courses))
+                        continue
+                    if (course_index < 0 or course_index >= len(courses)):
+                        print("Please enter a valid number between 1 and", len(courses))
+                    else: 
+                        break
+                
+                while True:
+                    try:
+                        name = str(input("What is the name of the assignment? : "))
+                    except ValueError:
+                        print("Invalid input. Please enter a string.")
+                        continue
+                    already_exists = False
+                    for assignment in courses[course_index].assignments:
+                        if (assignment.name == name):
+                            already_exists = True
+                            break
+                    if (already_exists):
+                        print("An assignment with this name already exists, please enter a new assignment.")
+                    else:
+                        break
+
+                print("When is the assignment due?")
+                while True:
+                    try:
+                        month = int(input("Enter the month number : "))
+                    except ValueError:
+                        print("Please enter a valid number.")
+                    if (month < 1 or month > 12):
+                        print("Please enter a number between 1 and 12.")
+                    else:
+                        break
+                    
+                while True:
+                    try: 
+                        date = int(input("Enter the date : "))
+                    except ValueError:
+                        print("Please enter a valid number.")
+                        continue
+                    if (month == 2):
+                        if (date < 1 or date > 28):
+                            print("Please enter a date between 1 and 28")
+                        else:
+                            break
+                    elif (month == 4 or month == 6 or month == 9 or month == 11):
+                        if (date < 1 or date > 30):
+                            print("Please enter a date between 1 and 30")
+                        else:
+                            break
+                    else:
+                        if (date < 1 or date > 31):
+                            print("Please enter a date between 1 and 31")
+                        else:
+                            break
+                
+                while True:
+                    try:
+                        year = int(input("Enter the month number : "))
+                    except ValueError:
+                        print("Please enter a valid number.")
+                    if (year < 2021 or year > 2022):
+                        print("Please enter whether the exam is in 2021 or 2022.")
+                    else:
+                        break
+
+                courses[course_index].assignments.append(Assignment(name, datetime(year, month, day)))
+                
             elif (commandList[1] == "delete"):
                 pass
             else :
                 print("Please enter a valid command. Use the command \'help\'")
 
         elif (keyword == "exam"):
+            if (len(courses) == 0):
+                print("You do not have any courses. Please make a course first.") 
+                continue
             if (commandList[1] == "add"):
-                pass
+                print("You currently have the following courses: ")
+                for i in range(0, len(courses)): 
+                    print ((i + 1), ".", (courses[i].name))
+                print("Indicate the number of the course that this exam belongs to : ")
+
+                
             elif (commandList[1] == "delete"):
                 pass
             else :
