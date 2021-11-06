@@ -7,14 +7,15 @@ def makeDay(name):
     day = Day(name)
     return day
 
-def checkInt(str):
+def checkIntandPass(str, output):
     temp = 0
     try:
         temp = int(str)
-        return temp
+        output = temp
+        return True
     except ValueError:
         print("Error: invalid input")
-        return 0
+        return False
     
 
 
@@ -37,7 +38,21 @@ def main():
         elif (keyword == "assignment"): #assignment
             pass
         elif(keyword == "time"): #time
-            pass
+            output = 0
+            dateFound = False
+            for day in daysOfTheWeek:
+                if (commandList[1] == day.name()):
+                    dateFound = True
+                    if (checkIntandPass(commandList[2], output)):
+                        if (output >= 0 and output <= 24):
+                            day.timeTotal = output
+                        else:
+                            print("Error: hour has to be between 0 and 24")
+                    else:
+                        print("Error: invalid input")
+            if (not dateFound):
+                print("Error: invalid day")
+                
         elif (keyword == "print"): #print
             pass
         elif (keyword == "exit"):
