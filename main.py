@@ -15,6 +15,9 @@ def main():
         daysOfTheWeek.append(makeDay(name))
 
     while(True):
+        command = input()
+        keyword = command.split()[0]
+        
         if (True): #course
             pass
         elif (True): #assignment
