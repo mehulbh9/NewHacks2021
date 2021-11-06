@@ -391,7 +391,6 @@ def main():
                 print("Please enter a valid command. Use the command \'help\'")
 
         elif(keyword == "time"): #time
-
             output = 0
             dateFound = False
             for day in daysOfTheWeek:
