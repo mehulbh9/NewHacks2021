@@ -46,7 +46,7 @@ def reflectExam(asm, course):
     
 def printHelp():
     print("type 'help [command]' to see arguments of [command]")
-    print("List of Commands: \nhelp \ncourse \nassignment \ntime \nprint \nlist")
+    print("List of Commands: \nhelp \ncourse \nassignment \nexam \ntime \nprint \nlist")
 
 def main():
     namesOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] #array of names of the week in string
@@ -533,6 +533,10 @@ def main():
                 print("Please enter a valid command. Use the command \'help\'")
 
         elif(keyword == "time"): #time
+            if (commandList[1] == "print"):
+                for day in daysOfTheWeek:
+                    day.printTime()
+                continue
             timeTotal = 0
             dateFound = False
             for day in daysOfTheWeek:
