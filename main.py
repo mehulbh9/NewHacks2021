@@ -118,6 +118,7 @@ def printHelp():
     print("List of Commands: \nhelp \ncourse \nassignment \nexam \ntime \nprint \nlist")
 
 def main():
+    print("Welcome to the School Work Time Manager.")
     namesOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] #array of names of the week in string
     daysOfTheWeek = [] #array of Day objects
     courses = [] #array of Course objects
