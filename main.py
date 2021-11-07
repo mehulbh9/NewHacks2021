@@ -205,50 +205,34 @@ def main():
                         break
 
                 print("When is the assignment due?")
-                while True:
-                    try:
-                        month = int(input("Enter the month number : "))
-                    except ValueError:
-                        print("Please enter a valid number.")
-                        continue
-                    if (month < 1 or month > 12):
-                        print("Please enter a number between 1 and 12.")
-                    else:
-                        break
-                    
-                while True:
+                while True: 
                     try: 
-                        date = int(input("Enter the date : "))
+                        daymonthyear = str(input("Enter the date (day,month,year) : ")).split(",")
                     except ValueError:
-                        print("Please enter a valid number.")
-                        continue
-                    if (month == 2):
-                        if (date < 1 or date > 28):
-                            print("Please enter a date between 1 and 28")
-                        else:
-                            break
-                    elif (month == 4 or month == 6 or month == 9 or month == 11):
-                        if (date < 1 or date > 30):
-                            print("Please enter a date between 1 and 30")
-                        else:
-                            break
-                    else:
-                        if (date < 1 or date > 31):
-                            print("Please enter a date between 1 and 31")
-                        else:
-                            break
-                
-                while True:
-                    try:
-                        year = int(input("Enter the year : "))
-                    except ValueError:
-                        print("Please enter a valid number.")
-                    if (year < 2021 or year > 2022):
-                        print("Please enter whether the exam is in 2021 or 2022.")
-                    else:
+                        print("Enter a valid date with the correct format.")
                         break
 
-                courses[course_index].assignments.append(Assignment(courses[course_index].name + "%" + name, datetime.datetime(year, month, day), time))
+                    if (int(daymonthyear[1]) < 1 or int(daymonthyear[1]) > 12):
+                        print("Please enter a number between 1 and 12.")
+                        continue
+                    if (int(daymonthyear[2]) < 2021 or int(daymonthyear[2]) > 2022):
+                        print("Please enter whether the exam is in 2021 or 2022.")
+                        continue
+                    if (int(daymonthyear[1]) == 2):
+                        if (int(daymonthyear[0]) < 1 or int(daymonthyear[0]) > 28):
+                            print("Please enter a date between 1 and 28")
+                            continue
+                    elif (int(daymonthyear[1]) == 4 or int(daymonthyear[1]) == 6 or int(daymonthyear[1]) == 9 or int(daymonthyear[1]) == 11):
+                        if (int(daymonthyear[0]) < 1 or int(daymonthyear[0]) > 30):
+                            print("Please enter a date between 1 and 30")
+                            continue
+                    else:
+                        if (int(daymonthyear[0]) < 1 or int(daymonthyear[0]) > 31):
+                            print("Please enter a date between 1 and 31")
+                            continue
+                    break
+
+                courses[course_index].assignments.append(Assignment(courses[course_index].name + "%" + name, datetime.datetime(int(daymonthyear[2]), int(daymonthyear[1]), int(daymonthyear[0])), time))
                 
             elif (commandList[1] == "delete"):
                 print("You currently have the following courses: ")
@@ -362,50 +346,34 @@ def main():
                         break
 
                 print("When is the exam?")
-                while True:
-                    try:
-                        month = int(input("Enter the month number : "))
-                    except ValueError:
-                        print("Please enter a valid number.")
-                        continue
-                    if (month < 1 or month > 12):
-                        print("Please enter a number between 1 and 12.")
-                    else:
-                        break
-
-                while True:
+                while True: 
                     try: 
-                        date = int(input("Enter the date : "))
+                        daymonthyear = str(input("Enter the date (day,month,year) : ")).split(",")
                     except ValueError:
-                        print("Please enter a valid number.")
-                        continue
-                    if (month == 2):
-                        if (date < 1 or date > 28):
-                            print("Please enter a date between 1 and 28")
-                        else:
-                            break
-                    elif (month == 4 or month == 6 or month == 9 or month == 11):
-                        if (date < 1 or date > 30):
-                            print("Please enter a date between 1 and 30")
-                        else:
-                            break
-                    else:
-                        if (date < 1 or date > 31):
-                            print("Please enter a date between 1 and 31")
-                        else:
-                            break
-                
-                while True:
-                    try:
-                        year = int(input("Enter the month number : "))
-                    except ValueError:
-                        print("Please enter a valid number.")
-                    if (year < 2021 or year > 2022):
-                        print("Please enter whether the exam is in 2021 or 2022.")
-                    else:
+                        print("Enter a valid date with the correct format.")
                         break
 
-                courses[course_index].exams.append(Exam(courses[course_index].name + "%" + name, weight, time, datetime.datetime(year, month, day)))
+                    if (int(daymonthyear[1]) < 1 or int(daymonthyear[1]) > 12):
+                        print("Please enter a number between 1 and 12.")
+                        continue
+                    if (int(daymonthyear[2]) < 2021 or int(daymonthyear[2]) > 2022):
+                        print("Please enter whether the exam is in 2021 or 2022.")
+                        continue
+                    if (int(daymonthyear[1]) == 2):
+                        if (int(daymonthyear[0]) < 1 or int(daymonthyear[0]) > 28):
+                            print("Please enter a date between 1 and 28")
+                            continue
+                    elif (int(daymonthyear[1]) == 4 or int(daymonthyear[1]) == 6 or int(daymonthyear[1]) == 9 or int(daymonthyear[1]) == 11):
+                        if (int(daymonthyear[0]) < 1 or int(daymonthyear[0]) > 30):
+                            print("Please enter a date between 1 and 30")
+                            continue
+                    else:
+                        if (int(daymonthyear[0]) < 1 or int(daymonthyear[0]) > 31):
+                            print("Please enter a date between 1 and 31")
+                            continue
+                    break
+
+                courses[course_index].exams.append(Exam(courses[course_index].name + "%" + name, weight, time, datetime.datetime(daymonthyear[2], daymonthyear[1], daymonthyear[0])))
                 
             elif (commandList[1] == "delete"):
                 print("You currently have the following courses: ")
@@ -583,6 +551,8 @@ def main():
         elif (keyword == "exit"):
             print("Goodbye")
             exit = True
+
+        
 
 if __name__ == "__main__":
     main()
