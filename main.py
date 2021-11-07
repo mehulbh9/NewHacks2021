@@ -1,4 +1,5 @@
 import datetime
+import readWriteFile
 from assignment import Assignment
 from course import Course
 from day import Day
@@ -29,6 +30,8 @@ def main():
     daysOfTheWeek = [] #array of Day objects
     courses = [] #array of Course objects
     exit = False #whether or not while loop continues
+
+    courses = readWriteFile.readFile("testFile.txt")
 
     for name in namesOfTheWeek:
         daysOfTheWeek.append(makeDay(name))
@@ -530,8 +533,8 @@ def main():
                             lowestIndex = i
 
                 while (tempDate != assignmentDueDateList[lowestIndex]):
-                    if (timeDifference > abs(assignmentTime[lowestIndex] - daysOfTheWeek[tempDate].targetTime)):
-                        timeDifference = abs(assignmentTime[lowestIndex] - daysOfTheWeek[tempDate].targetTime)
+                    if (timeDifference > abs(assignmentTime[lowestIndex] - daysOfTheWeek[dayIndex].targetTime)):
+                        timeDifference = abs(assignmentTime[lowestIndex] - daysOfTheWeek[dayIndex].targetTime)
                         
                     tempDate+=1
 
