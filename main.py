@@ -88,30 +88,29 @@ def main():
                         print("A course with this name already exists, please enter a new course.")
                     else:
                         break
-                if (len(courses) == 0):
-                    priority = 2; 
-                else :
-                    print("You currently have the following courses: ")
-                    for i in range(0, len(courses)): 
-                        print ((i + 1), ".", (courses[i].name))
-                    print("Does the following course have lower, the same, or higher priority compared to your other courses?")
-                    while True:
-                        try:
-                            str_priority = str(input("Enter the priority (low, same, or high) : ")).lower()
-                        except ValueError:
-                            print("Please enter low, same, or high.")
-                            continue
-                        if (str_priority == "low"):
-                            priority = 1
-                            break
-                        elif (str_priority == "same"):
-                            priority = 2
-                            break
-                        elif (str_priority == "high"):
-                            priority = 3
-                            break
-                        else: 
-                            print("Please enter low, same, or high.")
+
+
+                print("You currently have the following courses: ")
+                for i in range(0, len(courses)): 
+                    print ((i + 1), ".", (courses[i].name))
+                print("Does the following course have low, neutral, or high priority")
+                while True:
+                    try:
+                        str_priority = str(input("Enter the priority (low, neutral, or high) : ")).lower()
+                    except ValueError:
+                        print("Please enter low, neutral, or high.")
+                        continue
+                    if (str_priority == "low"):
+                        priority = 1
+                        break
+                    elif (str_priority == "neutral"):
+                        priority = 2
+                        break
+                    elif (str_priority == "high"):
+                        priority = 3
+                        break
+                    else: 
+                        print("Please enter low, neutral, or high.")
                     
                 while True:
                     try: 
