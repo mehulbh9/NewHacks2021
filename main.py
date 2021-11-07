@@ -541,7 +541,8 @@ def main():
                             lowestIndex = i
 
                 while (tempDate != assignmentDueDateList[lowestIndex]):
-                    if (timeDifference > abs(assignmentTime[lowestIndex] - daysOfTheWeek[tempIndex].targetTime)):
+
+                    if (timeDifference > abs((assignmentTime[lowestIndex]*(float(assignmentDifficulty[lowestIndex])*0.15+0.55)) - daysOfTheWeek[tempIndex].targetTime) and daysOfTheWeek[tempIndex].targetTime*1.25 > (assignmentTime[lowestIndex]*(float(assignmentDifficulty[lowestIndex])*0.15+0.55))):
                         timeDifference = abs(assignmentTime[lowestIndex] - daysOfTheWeek[tempIndex].targetTime)
                         #print("time difference is " + str(timeDifference))
                         placedDayIndex = tempIndex
@@ -553,7 +554,7 @@ def main():
                         tempIndex+=1
                     elif (tempIndex == 6):
                         tempIndex = 0
-                #print(placedDayIndex)
+                ##print(placedDayIndex)
                 tempName = assignmentList[lowestIndex].name
                 
                 #print(daysOfTheWeek[placedDayIndex])
