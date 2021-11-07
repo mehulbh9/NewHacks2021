@@ -6,7 +6,7 @@ import datetime
 def readFile(fileName):
     file = open(fileName, "r", encoding = "UTF-8")
     line = file.readline()
-    line = line[0: len(line) - 1]
+    line = line[0: len(line)]
 
     list1 = line.split("*")
 

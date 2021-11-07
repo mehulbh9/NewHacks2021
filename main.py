@@ -21,8 +21,8 @@ def checkNumInputs(list, length):
     else:
         return True
 
-def reflectAssignment(asm, course):
-    print("How do you feel about your recent assignment "+asm.name+" from the course "+course.name+"?")
+def reflectAssignment(name, course):
+    print("How do you feel about your recent assignment '"+str(name.split('%')[1])+"' from the course "+course.name+"?")
     while True:
         emotion = str(input("I feel [bad/ok/good]: ")).lower()
         if (emotion == "bad" and course.difficulty > 1):
@@ -30,10 +30,12 @@ def reflectAssignment(asm, course):
             break
         elif (emotion == "good" and course.difficulty < 5):
             course.difficulty += 1
+            break
+        elif (emotion == "ok"):
             break
 
-def reflectExam(asm, course):
-    print("How do you feel about your recent exam "+asm.name+" from the course "+course.name+"?")
+def reflectExam(name, course):
+    print("How do you feel about your recent exam '"+str(name.split('%')[1])+"' from the course "+course.name+"?")
     while True:
         emotion = str(input("I feel [bad/ok/good]: ")).lower()
         if (emotion == "bad" and course.difficulty > 1):
@@ -41,7 +43,9 @@ def reflectExam(asm, course):
             break
         elif (emotion == "good" and course.difficulty < 5):
             course.difficulty += 1
-            break          
+            break 
+        elif (emotion == "ok"):
+            break         
     
     
 def printHelp():
@@ -53,7 +57,7 @@ def main():
     daysOfTheWeek = [] #array of Day objects
     courses = [] #array of Course objects
     exit = False #whether or not while loop continues
-    dayinYear = int(datetime.datetime.now().strftime("%j"))
+    TodayFullDate = datetime.datetime.now()
 
     today = datetime.datetime.now().strftime("%A")
     found = False
@@ -73,12 +77,14 @@ def main():
         
     for course in courses:
         for assignment in course.assignments:
-            if (dayinYear > assignment.getDay()):
-                reflectAssignment(assignment, course)
+            if (TodayFullDate > assignment.duedate):
+                reflectAssignment(assignment.name, course)
                 course.assignments.remove(assignment)
         for exam in course.exams:
-            if (dayinYear > assignment.getDay()):
-                reflectExam(exam, course)
+            if (TodayFullDate > exam.date):
+                print(TodayFullDate)
+                print(exam.date)
+                reflectExam(exam.name, course)
                 course.exam.remove(exam)
     
     
