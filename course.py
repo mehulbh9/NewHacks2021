@@ -27,5 +27,5 @@ class Course:
         string += "Upcoming exams : " + "\n"
         for exam in self.exams: 
             name = exam.name.split("%")[1]
-            string += str(name) + ": on " + str(exam.date.strftime("%a")) + ", " + str(exam.date.strftime("%B")) + " " + str(exam.date.strftime("%d")) + ", " + str(exam.date.strftime("%Y")) + " and estimated study time : " + str(exam.study_time) + "\n"
+            string += str(name) + " with weight " + str(exam.weight) + "% on " + str(exam.date.strftime("%a")) + ", " + str(exam.date.strftime("%B")) + " " + str(exam.date.strftime("%d")) + ", " + str(exam.date.strftime("%Y")) + " and estimated study time : " + str(exam.study_time) + "\n"
         return string
