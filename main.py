@@ -31,7 +31,7 @@ def main():
     courses = [] #array of Course objects
     exit = False #whether or not while loop continues
 
-    courses.append(readWriteFile.readFile("testFile.txt"))
+    courses = (readWriteFile.readFile("testFile.txt"))
 
     for name in namesOfTheWeek:
         daysOfTheWeek.append(makeDay(name))
