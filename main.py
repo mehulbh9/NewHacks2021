@@ -154,6 +154,7 @@ def main():
                             if (course.name == name):
                                 courses.remove(course)
                                 break
+                        break     
                     elif (delete_course == "no"):
                         break
                     else:
