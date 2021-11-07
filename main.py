@@ -284,7 +284,7 @@ def main():
                     print ((i + 1), ".", (courses[i].name))
                 while True:
                     try: 
-                        course_index = int(input("Indicate the number of the coure you would like to delete an assignment from : ")) - 1
+                        course_index = int(input("Indicate the number of the course you would like to delete an assignment from : ")) - 1
                     except ValueError:
                         print("Please enter a valid number between 1 and", len(courses))
                         continue
@@ -425,7 +425,7 @@ def main():
                     print ((i + 1), ".", (courses[i].name))
                 while True:
                     try: 
-                        course_index = int(input("Indicate the number of the coure you would like to delete an exam from : ")) - 1
+                        course_index = int(input("Indicate the number of the course you would like to delete an exam from : ")) - 1
                     except ValueError:
                         print("Please enter a valid number between 1 and", len(courses))
                         continue
