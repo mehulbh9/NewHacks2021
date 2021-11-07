@@ -3,6 +3,8 @@ def calculateTime(courses, days):
     totalTimeWork = 0.0
     assignmentList = []
     assignmentDueDateList = []
+    assignmentDifficulty = []
+    assignmentPriority = []
     targetTimeRatio = 0.0
 
     for course in courses:
@@ -10,6 +12,8 @@ def calculateTime(courses, days):
             totalTimeWork += assignment.time()
             assignmentList.append(assignment.name())
             assignmentDueDateList.append(assignment.getDay())
+            assignmentDifficulty.append(course.difficulty())
+            assignmentPriority.append(course.priority())
     
     for day in days:
         totalTimeFree += day.timetotal()
@@ -22,10 +26,13 @@ def calculateTime(courses, days):
     
     #finding earliest due date
     while (len(assignmentList) > 0):
-        lowest = 1000
+        lowest = 1000   
         lowestIndex = -1
         for i in range(len(assignmentList)):
             if (assignmentDueDateList[i] < lowest):
                 lowest = assignmentDueDateList[i]
                 lowestIndex = i
+            elif (assignmentDueDateList[i] == lowest):
+                if (assignmentPriority[i] > assignmentPriority[lowestIndex]):
+                    lowestIndex = i
         
