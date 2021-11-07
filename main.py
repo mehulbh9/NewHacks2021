@@ -270,7 +270,7 @@ def main():
                         print ((i + 1), ".", (courses[i].name))
                     while True:
                         try: 
-                            course_index = int(input("Indicate the number of the course that you want to change priority for : ")) - 1
+                            course_index = int(input("Indicate the number of the course that you want to change difficulty for : ")) - 1
                         except ValueError:
                             print("Please enter a valid number between 1 and", len(courses))
                             continue
