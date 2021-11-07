@@ -1,6 +1,6 @@
 class Day:
     name = ""
-    timeTotal = 1000
+    timeTotal = 1
     timeWork = 0
     timeFree = 0
     targetTime = 0.0
