@@ -3,7 +3,7 @@ class Day:
     timeTotal = 0
     timeWork = 0
     timeFree = 0
-    targetratio = 0.0
+    targetWork = 0.0
     
 
     def __init__(self, dayofweek):
