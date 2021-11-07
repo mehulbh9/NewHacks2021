@@ -89,10 +89,6 @@ def main():
                     else:
                         break
 
-
-                print("You currently have the following courses: ")
-                for i in range(0, len(courses)): 
-                    print ((i + 1), ".", (courses[i].name))
                 print("Does the following course have low, neutral, or high priority")
                 while True:
                     try:
