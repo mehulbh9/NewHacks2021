@@ -12,6 +12,8 @@ class Course:
         self.name = name 
         self.priority = priority
         self.difficulty = difficulty 
+        self.assignments = []
+        self.exams = []
 
 
     def __str__(self) -> str:

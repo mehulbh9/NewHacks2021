@@ -31,7 +31,7 @@ def main():
     courses = [] #array of Course objects
     exit = False #whether or not while loop continues
 
-    courses = readWriteFile.readFile("testFile.txt")
+    courses.append(readWriteFile.readFile("testFile.txt"))
 
     for name in namesOfTheWeek:
         daysOfTheWeek.append(makeDay(name))
@@ -210,7 +210,7 @@ def main():
                 print("When is the assignment due?")
                 while True: 
                     try: 
-                        daymonthyear = str(input("Enter the date (day,month,year) : ")).split(",")
+                        daymonthyear = str(input("Enter the date [DD,MM,YYYY] : ")).split(",")
                     except ValueError:
                         print("Enter a valid date with the correct format.")
                         break
@@ -218,8 +218,8 @@ def main():
                     if (int(daymonthyear[1]) < 1 or int(daymonthyear[1]) > 12):
                         print("Please enter a number between 1 and 12.")
                         continue
-                    if (int(daymonthyear[2]) < 2021 or int(daymonthyear[2]) > 2022):
-                        print("Please enter whether the exam is in 2021 or 2022.")
+                    if (int(daymonthyear[2]) < int((datetime.datetime.now()).strftime("%Y")) or int(daymonthyear[2]) > int((datetime.datetime.now()).strftime("%Y"))+1):
+                        print("Please enter whether the exam is in "+(datetime.datetime.now()).strftime("%Y") +" or "+ str(int((datetime.datetime.now()).strftime("%Y")+1))+".")
                         continue
                     if (int(daymonthyear[1]) == 2):
                         if (int(daymonthyear[0]) < 1 or int(daymonthyear[0]) > 28):
