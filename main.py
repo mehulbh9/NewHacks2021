@@ -405,7 +405,7 @@ def main():
                     else:
                         break
 
-                courses[course_index].exams.append(Exam(course[course_index].name + "%" + name, weight, time, datetime.datetime(year, month, day)))
+                courses[course_index].exams.append(Exam(courses[course_index].name + "%" + name, weight, time, datetime.datetime(year, month, day)))
                 
             elif (commandList[1] == "delete"):
                 print("You currently have the following courses: ")
