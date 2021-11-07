@@ -8,16 +8,6 @@ def makeDay(name):
     day = Day(name)
     return day
 
-def checkIntandPass(str, output):
-    temp = 0
-    try:
-        temp = int(str)
-        output = temp
-        return True
-    except ValueError:
-        print("Error: invalid input")
-        return False
-
 def checkNumInputs(list, length):
     if (len(list) < length):
         print("Error: too few arguments")
@@ -476,14 +466,16 @@ def main():
                 print("Please enter a valid command. Use the command \'help\'")
 
         elif(keyword == "time"): #time
-            output = 0
+            timeTotal = 0
             dateFound = False
             for day in daysOfTheWeek:
                 if (commandList[1] == day.name()):
                     dateFound = True
-                    if (checkIntandPass(commandList[2], output)):
-                        day.setTotal(output)
-                    else:
+                    try: 
+                        timeTotal = int(commandList[2])
+                        day.setTotal(timeTotal)
+                        dateFound = True
+                    except ValueError:
                         print("invalid input")
             if (not dateFound):
                 print("Error: invalid day")
