@@ -119,5 +119,5 @@ def writeFile(courses, fileName):
 
 
 #Math1234&1&1&Math1234%HW1^2020^5^6^500,Math1234%HW2^2020^5^15^500&Math1234%Midterm^10.0^6^2020^8^9*Eng45&1&1&$&$
-myList = readFile("testFile.txt")
-writeFile(myList, "testFile2.txt")
+#myList = readFile("testFile.txt")
+#writeFile(myList, "testFile2.txt")
