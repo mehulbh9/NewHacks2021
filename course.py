@@ -1,5 +1,3 @@
-import time
-
 class Course:
     name = ""
     priority = 2
@@ -19,7 +17,6 @@ class Course:
 
 
     def __str__(self) -> str:
-        time.sleep(0.2)
         string = "Course " + str(self.name) + "\n"
         string += "Priority : " + str(self.priority) + "\n"
         string += "Difficulty : " + str(self.difficulty) + "\n"
