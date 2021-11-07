@@ -13,7 +13,7 @@ def readDays(fileName):
     file.close()
     return day_and_totalTime
 
-def readDays (fileName, days):
+def writeDays(fileName, days):
     string = ""
     for i in range(7):
         string += days[i].name

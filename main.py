@@ -761,6 +761,7 @@ def main():
 
     
     readWriteFile.writeFile(courses, "testFile2.txt")
+    readWriteDay.writeDays("testFile4.txt", daysOfTheWeek)
 
         
 
