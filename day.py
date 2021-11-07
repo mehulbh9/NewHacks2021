@@ -4,16 +4,19 @@ class Day:
     timeWork = 0
     timeFree = 0
     targetTime = 0.0
-    assignments = []
+    
 
     def __init__(self, dayofweek):
         self.name = dayofweek
+        self.assignments = []
 
+    
     def __str__(self) -> str:
-        string = self.name+ " has "+ str(len(self.assignments))+ " assignments planned, with "+ str(self.timeWork) + " minutes of work and "+str(self.timeFree)+" minutes free. \n"
-        string += "The assignments are:\n"
-        for asm in self.assignments:
-            string += str(asm.name.split('%')[0])+" from "+ str(asm.name.split('%')[1] + "\n")
+        string = self.name.ljust(10)+ "-> has "+ str(len(self.assignments))+ " assignments planned, with "+ str(self.timeWork) + " minutes of work and "+str(self.timeFree)+" minutes free."
+        if (len(self.assignments)>0):
+            string += "\nThe assignments are:\n"
+            for asm in self.assignments:
+                string += str(asm.split('%')[1])+" from "+ str(asm.split('%')[0] + "\n")
         return string
     
     def setTotal(self, time):
@@ -21,3 +24,6 @@ class Day:
             self.timeTotal = time
         else:
             print("Error: minute has to be between 0 and 1440")
+    
+    def appendAsm(self, name):
+        self.assignments.append(name)

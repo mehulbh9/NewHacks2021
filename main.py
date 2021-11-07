@@ -436,7 +436,7 @@ def main():
             timeTotal = 0
             dateFound = False
             for day in daysOfTheWeek:
-                if (commandList[1] == day.name()):
+                if (commandList[1] == day.name):
                     dateFound = True
                     try: 
                         timeTotal = int(commandList[2])
@@ -448,7 +448,12 @@ def main():
                 print("Error: invalid day")
                 
         elif (keyword == "print"): #print
-            ####
+            
+            for day in daysOfTheWeek:
+                day.assignments.clear()
+                day.timeWork = 0
+                day.timeFree = 0
+
             totalTimeFree = 0.0
             totalTimeWork = 0.0
             assignmentTime = []
@@ -459,8 +464,11 @@ def main():
             targetTimeRatio = 0.0
             todaysDatetime = datetime.datetime.now()
             todaysDate = int(todaysDatetime.strftime("%j"))
-            todaysDateName = todaysDatetime.strftime("%A")
-            dayIndex = 0
+            dayIndex = int(todaysDatetime.strftime("%w"))
+            dayIndex -= 1
+            if (dayIndex < 0):
+                dayIndex += 7
+
             placedDayIndex = 0
 
             if (todaysDate <= 120):
@@ -481,14 +489,13 @@ def main():
             targetTimeRatio = totalTimeWork/totalTimeFree
 
             for day in daysOfTheWeek:
-                if (todaysDateName != day.name):
-                    dayIndex+=1
                 day.timeFree = day.timeTotal
                 day.targetTime = float(targetTimeRatio * day.timeTotal)
 
                 
             #finding earliest due date
             while (len(assignmentList) > 0):
+                tempIndex = dayIndex
                 lowest = 1000   
                 lowestIndex = -1
                 tempDate = todaysDate
@@ -502,19 +509,26 @@ def main():
                             lowestIndex = i
 
                 while (tempDate != assignmentDueDateList[lowestIndex]):
-                    if (timeDifference > abs(assignmentTime[lowestIndex] - daysOfTheWeek[dayIndex].targetTime)):
-                        timeDifference = abs(assignmentTime[lowestIndex] - daysOfTheWeek[dayIndex].targetTime)
-                        placedDayIndex = dayIndex
+                    if (timeDifference > abs(assignmentTime[lowestIndex] - daysOfTheWeek[tempIndex].targetTime)):
+                        timeDifference = abs(assignmentTime[lowestIndex] - daysOfTheWeek[tempIndex].targetTime)
+                        #print("time difference is " + str(timeDifference))
+                        placedDayIndex = tempIndex
 
                         
                     tempDate+=1
 
-                    if (dayIndex < 6):
-                        dayIndex+=1
-                    elif (dayIndex == 6):
-                        dayIndex = 0
-
-                ((daysOfTheWeek[placedDayIndex]).assignments).append(assignmentList[lowestIndex])
+                    if (tempIndex < 6):
+                        tempIndex+=1
+                    elif (tempIndex == 6):
+                        tempIndex = 0
+                #print(placedDayIndex)
+                tempName = assignmentList[lowestIndex].name
+                
+                #print(daysOfTheWeek[placedDayIndex])
+                #print(daysOfTheWeek[placedDayIndex-1])
+                daysOfTheWeek[placedDayIndex].appendAsm(tempName)
+                #print((daysOfTheWeek[placedDayIndex]).assignments)
+                #print((daysOfTheWeek[placedDayIndex-1]).assignments)
                 daysOfTheWeek[placedDayIndex].timeWork += assignmentTime[lowestIndex]
                 daysOfTheWeek[placedDayIndex].targetTime -= assignmentTime[lowestIndex]
                 daysOfTheWeek[placedDayIndex].timeFree -= assignmentTime[lowestIndex]
@@ -527,7 +541,8 @@ def main():
             ####
             if (commandList[1] == "all"):
                 for day in daysOfTheWeek:
-                    print(day)
+                    if (len(day.assignments) > 0):
+                        print(day)
             else:
                 printDay = False
                 for day in daysOfTheWeek:
