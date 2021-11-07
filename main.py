@@ -240,7 +240,7 @@ def main():
                 
                 while True:
                     try:
-                        year = int(input("Enter the month number : "))
+                        year = int(input("Enter the year : "))
                     except ValueError:
                         print("Please enter a valid number.")
                     if (year < 2021 or year > 2022):
