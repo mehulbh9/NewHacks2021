@@ -582,12 +582,13 @@ def main():
 
             for course in courses:
                 for assignment in course.assignments:
-                    totalTimeWork += assignment.time
-                    assignmentTime.append(assignment.time)
-                    assignmentList.append(assignment)
-                    assignmentDueDateList.append(assignment.getDay())
-                    assignmentDifficulty.append(course.difficulty)
-                    assignmentPriority.append(course.priority)
+                    if (assignment.getDay() < todaysDate + 7):
+                        totalTimeWork += assignment.time
+                        assignmentTime.append(assignment.time)
+                        assignmentList.append(assignment)
+                        assignmentDueDateList.append(assignment.getDay())
+                        assignmentDifficulty.append(course.difficulty)
+                        assignmentPriority.append(course.priority)
                 
             for day in daysOfTheWeek:
                 totalTimeFree += day.timeTotal
@@ -620,33 +621,26 @@ def main():
 
                     if (timeDifference > abs((assignmentTime[lowestIndex]*(float(assignmentDifficulty[lowestIndex])*0.15+0.55)) - daysOfTheWeek[tempIndex].targetTime) and daysOfTheWeek[tempIndex].targetTime*1.25 > (assignmentTime[lowestIndex]*(float(assignmentDifficulty[lowestIndex])*0.15+0.55))):
                         timeDifference = abs(assignmentTime[lowestIndex] - daysOfTheWeek[tempIndex].targetTime)
-                        #print("time difference is " + str(timeDifference))
+                    
                         foundDate = True
                         placedDayIndex = tempIndex
 
-                    ##print(daysOfTheWeek[tempIndex].targetTime)
+                    
                     tempDate+=1
 
                     if (tempIndex < 6):
                         tempIndex+=1
                     elif (tempIndex == 6):
                         tempIndex = 0
-                #print(placedDayIndex)
+                
                 
                 if (not foundDate):
-                    #print(dayIndex)
+                    
                     placedDayIndex = dayIndex+outofTime if dayIndex+outofTime <= 6 else 0
                     outofTime+=1
-                    #print("date not found")
-                    #print("No suitable time found for " + str((assignmentList(lowestIndex).name.split('%'))[1]) + " in course " + str((assignmentList(lowestIndex).name.split('%'))[0]))
-
+                    
                 tempName = assignmentList[lowestIndex].name
-                
-                #print(daysOfTheWeek[placedDayIndex])
-                #print(daysOfTheWeek[placedDayIndex-1])
                 daysOfTheWeek[placedDayIndex].appendAsm(tempName)
-                #print((daysOfTheWeek[placedDayIndex]).assignments)
-                #print((daysOfTheWeek[placedDayIndex-1]).assignments)
                 daysOfTheWeek[placedDayIndex].timeWork += assignmentTime[lowestIndex]
                 daysOfTheWeek[placedDayIndex].targetTime -= assignmentTime[lowestIndex]
                 daysOfTheWeek[placedDayIndex].timeFree -= assignmentTime[lowestIndex]
@@ -656,7 +650,7 @@ def main():
                 assignmentDifficulty.pop(lowestIndex)
                 assignmentPriority.pop(lowestIndex)
 
-            ####
+            
             if (commandList[1] == "all"):
                 for day in daysOfTheWeek:
                     if (len(day.assignments) > 0):
