@@ -1,8 +1,9 @@
 def calculateTime(courses, days):
-    totalTimeFree = 0
-    totalTimeWork = 0
+    totalTimeFree = 0.0
+    totalTimeWork = 0.0
     assignmentList = []
     assignmentDueDateList = []
+    targetTimeRatio = 0.0
 
     for course in courses:
         for assignment in course.assignments():
@@ -12,6 +13,9 @@ def calculateTime(courses, days):
     
     for day in days:
         totalTimeFree += day.totalTime()
+
+    targetTimeRatio = totalTimeWork/totalTimeFree
+    
     
     #finding earliest due date
     while (len(assignmentList) > 0):
