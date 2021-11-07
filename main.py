@@ -11,15 +11,6 @@ def makeDay(name):
     day = Day(name)
     return day
 
-def checkNumInputs(list, length):
-    if (len(list) < length):
-        print("Error: too few arguments")
-        return False
-    elif (len(list) > length):
-        print("Error: too many arguments")
-        return False
-    else:
-        return True
 
 def reflectAssignment(name, course):
     print("How do you feel about your recent assignment '"+str(name.split('%')[1])+"' from the course "+course.name+"?")
@@ -99,34 +90,33 @@ def main():
         keyword = commandList[0]
         
         if (keyword == "help"):
-            
-            if (len(commandList) == 1):
+            if (len(commandList) != 2):
                 printHelp()
             else:
                 helpcom = commandList[1]
                 if (helpcom == "help"):
-                    print("Description: used to show format of other commands")
+                    print("Description: used to show format of other commands.")
                     print("Command: help [command]")
                 elif (helpcom == "course"):
-                    print("Description: used to add or delete, or change the priority or difficult of a course")
+                    print("Description: used to add or delete, or change the priority or difficult of a course.")
                     print("Command: course [add/delete/priority/difficulty]")
                     print("note: [delete all] can be used to delete all courses.")
                 elif (helpcom == "assignment"):
-                    print("Description: used to add or delete an assignment from a course")
+                    print("Description: used to add or delete an assignment from a course.")
                     print("Command: assignment [add/delete]")
                     print("note: [delete all] can be used to delete all assignments.")
                 elif (helpcom == "exam"):
-                    print("Description: used to add or delete an exam from a course")
+                    print("Description: used to add or delete an exam from a course.")
                     print("Command: exam [add/delete]")
                     print("note: [delete all] can be used to delete all exams.")
                 elif (helpcom == "time"):
-                    print("Description: used to set the total time available of a certain day of week")
+                    print("Description: used to set the total time available of a certain day of week.")
                     print("Command: time [day of the week] [total time available]")
                 elif (helpcom == "print"):
-                    print("Description: prints the schedule of a day, or every day")
+                    print("Description: prints the schedule of a day, or every day.")
                     print("Command: print ['day'/all]")
                 elif (helpcom == "list"):
-                    print("Description: prints all the courses, assignments, and exams")
+                    print("Description: prints all the courses, assignments, and exams.")
                     print("Command: list ['course'/all]")
                 elif (helpcom == "pomodoro"):
                     print("Description: use to start a pomodoro timer for a specified time.")
@@ -135,6 +125,9 @@ def main():
                     printHelp()
                 
         elif (keyword == "course"): #course
+            if (len(commandList) < 2):
+                print("Please enter a valid command. Use the command \'help\'.")
+                continue
             if (commandList[1] == "add"):
                 while True:
                     try:
@@ -152,7 +145,7 @@ def main():
                     else:
                         break
 
-                print("Does the following course have low, neutral, or high priority")
+                print("Does the following course have low, neutral, or high priority?")
                 while True:
                     try:
                         str_priority = str(input("Enter the priority (low, neutral, or high) : ")).lower()
@@ -185,7 +178,7 @@ def main():
                 courses.append(Course(name, priority, difficulty))
 
             elif (commandList[1] == "delete"):
-                if (commandList[2] == "all"):
+                if (len(commandList) == 3 and commandList[2] == "all"):
                     print("Are you sure you want to delete all courses?")
                     while True:
                         try:
@@ -219,12 +212,12 @@ def main():
                         else:
                             break
                     
-                    print("Are you sure you want to delete the course", name, "?")
+                    print("Are you sure you want to delete the course " + name + "?")
                     while True:
                         try: 
                             delete_course = str(input("Enter yes or no : ")).lower()
                         except ValueError: 
-                            print("Please enter yes or no")
+                            print("Please enter yes or no.")
                             continue
                         if (delete_course == "yes"):
                             for course in courses: 
@@ -235,26 +228,26 @@ def main():
                         elif (delete_course == "no"):
                             break
                         else:
-                            print("Please enter yes or no")
+                            print("Please enter yes or no.")
 
             elif (commandList[1] == "priority"):
                 if (len(courses) == 0):
                     print("You do not have any courses. Please make a course first.") 
                 else:
-                    print("You currently have the following courses: ")
+                    print("You currently have the following courses : ")
                     for i in range(0, len(courses)): 
                         print ((i + 1), ".", (courses[i].name))
                     while True:
                         try: 
                             course_index = int(input("Indicate the number of the course that you want to change priority for : ")) - 1
                         except ValueError:
-                            print("Please enter a valid number between 1 and", len(courses))
+                            print("Please enter a valid number between 1 and " + str(len(courses)) + ".")
                             continue
                         if (course_index < 0 or course_index >= len(courses)):
-                            print("Please enter a valid number between 1 and", len(courses))
+                            print("Please enter a valid number between 1 and " + str(len(courses)) + ".")
                         else: 
                             break
-                    print("Does the following course have low, neutral, or high priority")
+                    print("Does the following course have low, neutral, or high priority?")
                     while True:
                         try:
                             str_priority = str(input("Enter the priority (low, neutral, or high) : ")).lower()
@@ -279,17 +272,17 @@ def main():
                 if (len(courses) == 0):
                     print("You do not have any courses. Please make a course first.") 
                 else:
-                    print("You currently have the following courses: ")
+                    print("You currently have the following courses : ")
                     for i in range(0, len(courses)): 
                         print ((i + 1), ".", (courses[i].name))
                     while True:
                         try: 
                             course_index = int(input("Indicate the number of the course that you want to change difficulty for : ")) - 1
                         except ValueError:
-                            print("Please enter a valid number between 1 and", len(courses))
+                            print("Please enter a valid number between 1 and " + str(len(courses)) + ".")
                             continue
                         if (course_index < 0 or course_index >= len(courses)):
-                            print("Please enter a valid number between 1 and", len(courses))
+                            print("Please enter a valid number between 1 and " + str(len(courses)) + ".")
                         else: 
                             break
                     while True:
@@ -310,6 +303,9 @@ def main():
 
                     
         elif (keyword == "assignment"): #assignment
+            if (len(commandList) == 1):
+                print("Please enter a valid command. Use the command \'help\'.")
+                continue
             if (len(courses) == 0):
                 print("You do not have any courses. Please make a course first.") 
                 continue
@@ -321,10 +317,10 @@ def main():
                     try: 
                         course_index = int(input("Indicate the number of the course that this assignment belongs to : ")) - 1
                     except ValueError:
-                        print("Please enter a valid number between 1 and", len(courses))
+                        print("Please enter a valid number between 1 and " + str(len(courses)) + ".")
                         continue
                     if (course_index < 0 or course_index >= len(courses)):
-                        print("Please enter a valid number between 1 and", len(courses))
+                        print("Please enter a valid number between 1 and " + str(len(courses)) + ".")
                     else: 
                         break
                 
@@ -371,32 +367,32 @@ def main():
                         continue
                     if (int(daymonthyear[1]) == 2):
                         if (int(daymonthyear[0]) < 1 or int(daymonthyear[0]) > 28):
-                            print("Please enter a date between 1 and 28")
+                            print("Please enter a date between 1 and 28.")
                             continue
                     elif (int(daymonthyear[1]) == 4 or int(daymonthyear[1]) == 6 or int(daymonthyear[1]) == 9 or int(daymonthyear[1]) == 11):
                         if (int(daymonthyear[0]) < 1 or int(daymonthyear[0]) > 30):
-                            print("Please enter a date between 1 and 30")
+                            print("Please enter a date between 1 and 30.")
                             continue
                     else:
                         if (int(daymonthyear[0]) < 1 or int(daymonthyear[0]) > 31):
-                            print("Please enter a date between 1 and 31")
+                            print("Please enter a date between 1 and 31.")
                             continue
                     break
 
                 courses[course_index].assignments.append(Assignment(courses[course_index].name + "%" + name, datetime.datetime(int(daymonthyear[2]), int(daymonthyear[1]), int(daymonthyear[0])), time))
                 
             elif (commandList[1] == "delete"):
-                print("You currently have the following courses: ")
+                print("You currently have the following courses : ")
                 for i in range(0, len(courses)): 
                     print ((i + 1), ".", (courses[i].name))
                 while True:
                     try: 
                         course_index = int(input("Indicate the number of the course you would like to delete an assignment from : ")) - 1
                     except ValueError:
-                        print("Please enter a valid number between 1 and", len(courses))
+                        print("Please enter a valid number between 1 and " + str(len(courses)) + ".")
                         continue
                     if (course_index < 0 or course_index >= len(courses)):
-                        print("Please enter a valid number between 1 and", len(courses))
+                        print("Please enter a valid number between 1 and " + str(len(courses)) + ".")
                     else: 
                         break
                 
@@ -404,7 +400,7 @@ def main():
                     print("There are no assignments in this course.")
                     break
 
-                if (commandList[2] == "all"):
+                if (len(commandList) == 3 and commandList[2] == "all"):
                     print("Are you sure you want to delete all assignments?")
                     while True:
                         try:
@@ -438,7 +434,7 @@ def main():
                         else:
                             break
 
-                    print("Are you sure you want to delete the assignment", name, "?")
+                    print("Are you sure you want to delete the assignment " + name + "?")
                     while True:
                         try: 
                             delete_assignment = str(input("Enter yes or no : ")).lower()
@@ -455,9 +451,12 @@ def main():
                         else:
                             print("Please enter yes or no")
             else :
-                print("Please enter a valid command. Use the command \'help\'")
+                print("Please enter a valid command. Use the command 'help'.")
 
         elif (keyword == "exam"):
+            if (len(commandList) < 2):
+                print("Please enter a valid command. Use the command 'help'.")
+                continue
             if (len(courses) == 0):
                 print("You do not have any courses. Please make a course first.") 
                 continue
@@ -469,10 +468,10 @@ def main():
                     try: 
                         course_index = int(input("Indicate the number of the course that this exam belongs to : ")) - 1
                     except ValueError:
-                        print("Please enter a valid number between 1 and", len(courses))
+                        print("Please enter a valid number between 1 and " + str(len(courses)) + ".")
                         continue
                     if (course_index < 0 or course_index >= len(courses)):
-                        print("Please enter a valid number between 1 and", len(courses))
+                        print("Please enter a valid number between 1 and " + str(len(courses)) + ".")
                     else: 
                         break
                 
@@ -496,10 +495,10 @@ def main():
                     try:
                         weight = float(input("What is the weight of this exam? : "))
                     except ValueError:
-                        print("Please enter a valid number greater than 0 and less than 100")
+                        print("Please enter a valid number greater than 0 and less than 100.")
                         continue
                     if (weight <= 0 or weight >= 100):
-                        print("Please enter a valid number greater than 0 and less than 100")
+                        print("Please enter a valid number greater than 0 and less than 100.")
                     else:
                         break
 
@@ -530,32 +529,32 @@ def main():
                         continue
                     if (int(daymonthyear[1]) == 2):
                         if (int(daymonthyear[0]) < 1 or int(daymonthyear[0]) > 28):
-                            print("Please enter a date between 1 and 28")
+                            print("Please enter a date between 1 and 28.")
                             continue
                     elif (int(daymonthyear[1]) == 4 or int(daymonthyear[1]) == 6 or int(daymonthyear[1]) == 9 or int(daymonthyear[1]) == 11):
                         if (int(daymonthyear[0]) < 1 or int(daymonthyear[0]) > 30):
-                            print("Please enter a date between 1 and 30")
+                            print("Please enter a date between 1 and 30.")
                             continue
                     else:
                         if (int(daymonthyear[0]) < 1 or int(daymonthyear[0]) > 31):
-                            print("Please enter a date between 1 and 31")
+                            print("Please enter a date between 1 and 31.")
                             continue
                     break
 
                 courses[course_index].exams.append(Exam(courses[course_index].name + "%" + name, weight, time, datetime.datetime(daymonthyear[2], daymonthyear[1], daymonthyear[0])))
                 
             elif (commandList[1] == "delete"):
-                print("You currently have the following courses: ")
+                print("You currently have the following courses : ")
                 for i in range(0, len(courses)): 
                     print ((i + 1), ".", (courses[i].name))
                 while True:
                     try: 
                         course_index = int(input("Indicate the number of the course you would like to delete an exam from : ")) - 1
                     except ValueError:
-                        print("Please enter a valid number between 1 and", len(courses))
+                        print("Please enter a valid number between 1 and " + str(len(courses)) + ".")
                         continue
                     if (course_index < 0 or course_index >= len(courses)):
-                        print("Please enter a valid number between 1 and", len(courses))
+                        print("Please enter a valid number between 1 and " + str(len(courses)) + ".")
                     else: 
                         break
                 
@@ -563,7 +562,7 @@ def main():
                     print("There are no exams in this course.")
                     break
 
-                if (commandList[2] == "all"):
+                if (len(commandList) == 3 and commandList[2] == "all"):
                     print("Are you sure you want to delete all exams?")
                     while True:
                         try:
@@ -597,12 +596,12 @@ def main():
                         else:
                             break
 
-                    print("Are you sure you want to delete the exam", name, "?")
+                    print("Are you sure you want to delete the exam " + name + "?")
                     while True:
                         try: 
                             delete_exam = str(input("Enter yes or no : ")).lower()
                         except ValueError: 
-                            print("Please enter yes or no")
+                            print("Please enter yes or no.")
                             continue
                         if (delete_exam == "yes"):
                             for exam in courses[course_index].exams: 
@@ -612,11 +611,14 @@ def main():
                         elif (delete_exam == "no"):
                             break
                         else:
-                            print("Please enter yes or no")
+                            print("Please enter yes or no.")
             else :
-                print("Please enter a valid command. Use the command \'help\'")
+                print("Please enter a valid command. Use the command \'help\'.")
 
         elif(keyword == "time"): #time
+            if (len(commandList) != 3):
+                print("Please enter a valid command. Use the command \'help\'.")
+                continue
             if (commandList[1] == "print"):
                 for day in daysOfTheWeek:
                     day.printTime()
@@ -750,7 +752,9 @@ def main():
                     print("Please enter a valid day.")
 
         elif (keyword == "list"):
-
+            if (len(commandList) != 2):
+                print("Please enter a valid command. Use the command \'help\'.")
+                continue
             if (commandList[1] == "all"):
                 if (len(courses) == 0):
                     print("There are no courses.")
@@ -766,6 +770,9 @@ def main():
                 if (not printed):
                     print("Course", commandList[1], "does not exist. Please enter a valid course.")
         elif (keyword == "pomodoro"):
+            if (len(commandList) != 1):
+                print("Please enter a valid command. Use the command \'help\'.")
+                continue
             restart_pomodoro = True
             while (restart_pomodoro):
                 print("How long do you want to work for?")
@@ -795,7 +802,7 @@ def main():
                         print("Break time is over. Would you like to start another pomodoro timer?")
                         while True:
                             try: 
-                                another_timer = str(input("Enter yes or no: ")).lower()
+                                another_timer = str(input("Enter yes or no : ")).lower()
                             except ValueError: 
                                 print("Please enter yes or no.")
                                 continue
@@ -813,7 +820,7 @@ def main():
                         print("Would you like to start a different pomodoro timer?")
                         while True:
                             try: 
-                                another_timer = str(input("Enter yes or no: ")).lower()
+                                another_timer = str(input("Enter yes or no : ")).lower()
                             except ValueError: 
                                 print("Please enter yes or no.")
                                 continue
@@ -831,7 +838,7 @@ def main():
                         print("Please enter yes or no.")
             
         elif (keyword == "exit"):
-            print("Goodbye")
+            print("Goodbye, hope you have a productive day!")
             exit = True
         else:
             print("Please enter a valid command.")
