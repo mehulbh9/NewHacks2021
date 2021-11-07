@@ -3,6 +3,7 @@ class Day:
     timeTotal = 0
     timeWork = 0
     timeFree = 0
+    targetratio = 0.0
     
 
     def __init__(self, dayofweek):
@@ -13,7 +14,6 @@ class Day:
         return string
     
     def setTotal(self, time):
-        
         if (time >= 0 and time <= 1440):
             self.timeTotal = time
         else:
