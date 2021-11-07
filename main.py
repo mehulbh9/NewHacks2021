@@ -16,24 +16,28 @@ def reflectAssignment(name, course):
     print("How do you feel about your recent assignment '"+str(name.split('%')[1])+"' from the course "+course.name+"?")
     while True:
         emotion = str(input("I feel [bad/ok/good]: ")).lower()
-        if (emotion == "bad" and course.difficulty > 1):
-            course.difficulty -= 1
+        if (emotion == "good"):
+            if (course.difficulty > 1):
+                course.difficulty -= 1
             break
-        elif (emotion == "good" and course.difficulty < 5):
-            course.difficulty += 1
-            break
+        elif (emotion == "bad" and course.difficulty < 5):
+            if (course.difficulty < 5):
+                course.difficulty += 1
+            break 
         elif (emotion == "ok"):
-            break
+            break  
 
 def reflectExam(name, course):
     print("How do you feel about your recent exam '"+str(name.split('%')[1])+"' from the course "+course.name+"?")
     while True:
         emotion = str(input("I feel [bad/ok/good]: ")).lower()
-        if (emotion == "bad" and course.difficulty > 1):
-            course.difficulty -= 1
+        if (emotion == "good"):
+            if (course.difficulty > 1):
+                course.difficulty -= 1
             break
-        elif (emotion == "good" and course.difficulty < 5):
-            course.difficulty += 1
+        elif (emotion == "bad" and course.difficulty < 5):
+            if (course.difficulty < 5):
+                course.difficulty += 1
             break 
         elif (emotion == "ok"):
             break         
