@@ -89,7 +89,7 @@ def main():
                     else:
                         break
                 if (len(courses) == 0):
-                    priority = 0; 
+                    priority = 2; 
                 else :
                     print("You currently have the following courses: ")
                     for i in range(0, len(courses)): 
