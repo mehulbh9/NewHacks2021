@@ -475,9 +475,9 @@ def main():
                         day.setTotal(timeTotal)
                         dateFound = True
                     except ValueError:
-                        print("invalid input")
+                        print("Please enter a valid amount of time.")
             if (not dateFound):
-                print("Error: invalid day")
+                print("Please enter a valid day.")
                 
         elif (keyword == "print"): #print
             
@@ -597,13 +597,13 @@ def main():
                         printDay = True
                         break
                 if (not printDay):
-                    print("Error: invalid day")
+                    print("Please enter a valid day.")
 
         elif (keyword == "list"):
 
             if (commandList[1] == "all"):
                 if (len(courses) == 0):
-                    print("There are no courses")
+                    print("There are no courses.")
                 else:
                     for course in courses:
                         print(course)
@@ -614,11 +614,14 @@ def main():
                         print(course)
                         printed = True
                 if (not printed):
-                    print("Error: course not found")
+                    print("Course", commandList[1], "does not exist. Please enter a valid course.")
 
         elif (keyword == "exit"):
             print("Goodbye")
             exit = True
+        else:
+            print("Please enter a valid command.")
+    
     readWriteFile.writeFile(courses, "testFile2.txt")
 
         
