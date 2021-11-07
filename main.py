@@ -568,7 +568,6 @@ def main():
             assignmentDifficulty = []
             assignmentPriority = []
             targetTimeRatio = 0.0
-            targetTimeList = []
             todaysDatetime = datetime.datetime.now()
             todaysDate = int(todaysDatetime.strftime("%j"))
             todaysDateName = todaysDatetime.strftime("%A")
@@ -595,7 +594,7 @@ def main():
                 if (todaysDateName != day.name()):
                     dayIndex+=1
 
-                targetTimeList = float(targetTimeRatio * day.timeTotal())
+                day.targetTime() = float(targetTimeRatio * day.timeTotal())
 
                 
             #finding earliest due date
@@ -613,8 +612,8 @@ def main():
                             lowestIndex = i
 
                 while (tempDate != assignmentDueDateList[lowestIndex]):
-                    if (timeDifference > abs(assignmentTime[lowestIndex] - targetTimeList[lowestIndex])):
-                        timeDifference = abs(assignmentTime[lowestIndex] - targetTimeList[lowestIndex])
+                    if (timeDifference > abs(assignmentTime[lowestIndex] - daysOfTheWeek[tempDate].targetTime())):
+                        timeDifference = abs(assignmentTime[lowestIndex] - daysOfTheWeek[tempDate].targetTime())
                         
                     tempDate+=1
 
@@ -624,12 +623,13 @@ def main():
                         dayIndex = 0
 
                 daysOfTheWeek[dayIndex].assignments().append(assignmentList[lowestIndex])
+                daysOfTheWeek[dayIndex].timeWork() += assignmentTime[lowestIndex]
+                daysOfTheWeek[dayIndex].targetTime() -= assignmentTime[lowestIndex]
                 assignmentTime.pop(lowestIndex)
                 assignmentList.pop(lowestIndex)
                 assignmentDueDateList.pop(lowestIndex)
                 assignmentDifficulty.pop(lowestIndex)
                 assignmentPriority.pop(lowestIndex)
-                targetTimeList.pop(lowestIndex)
 
             ####
             if (commandList[1] == "all"):
