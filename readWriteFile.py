@@ -35,8 +35,7 @@ def readFile(fileName):
             list4 = list2[4].split(",")
             for exams in list4:
                 examAttributes = exams.split("^")
-                print(examAttributes)
-
+                
                 name = examAttributes[0]
                 weight = float(examAttributes[1])
                 studytime = int(examAttributes[2])
