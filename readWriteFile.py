@@ -12,7 +12,7 @@ def readFile(fileName):
     returnList = []
     for l1 in list1:
         list2 = l1.split("&")
-        temp = Course(list2[0], list2[1], list2[2])
+        temp = Course(list2[0], int(list2[1]), int(list2[2]))
 
         list3 = list2[3].split(",")
         for assignment in list3:
@@ -48,5 +48,5 @@ def readFile(fileName):
         returnList.append(temp)
     return returnList
 #Math1234&1&1&HW1^2020^5^6^500,HW2^2020^5^15^500&Math^10^6^7^8^9
-myList = readFile("testFile.txt")
-print(myList[0])
+#myList = readFile("testFile.txt")
+#print(myList[0])

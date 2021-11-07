@@ -1,6 +1,6 @@
 class Day:
     name = ""
-    timeTotal = 0
+    timeTotal = 1000
     timeWork = 0
     timeFree = 0
     targetTime = 0.0
@@ -10,10 +10,10 @@ class Day:
         self.name = dayofweek
 
     def __str__(self) -> str:
-        string = self.name, "has", str(len(self.assignments)), "assignments planned, with", str(self.timeWork), "minutes of work and",str(self.timeFree),"minutes free. \n"
+        string = self.name+ " has "+ str(len(self.assignments))+ " assignments planned, with "+ str(self.timeWork) + " minutes of work and "+str(self.timeFree)+" minutes free. \n"
         string += "The assignments are:\n"
-        for asm in self.assignments():
-            string += (asm.name().split('%'))[0],"from",(asm.name().split('%'))[1]
+        for asm in self.assignments:
+            string += str(asm.name.split('%')[0])+" from "+ str(asm.name.split('%')[1] + "\n")
         return string
     
     def setTotal(self, time):
