@@ -166,41 +166,56 @@ def main():
 
             elif (commandList[1] == "delete"):
                 if (commandList[2] == "all"):
-                    pass
-                
-                while True:
-                    try:
-                        name = str(input("What is the name of the course? : "))
-                    except ValueError:
-                        print("Invalid input. Please enter a string.")
-                        continue
-                    already_exists = False
-                    for course in courses:
-                        if (course.name == name):
-                            already_exists = True
-                            break
-                    if (not(already_exists)):
-                        print("This course does not exist. Please enter a valid course.")
-                    else:
-                        break
-                
-                print("Are you sure you want to delete the course", name, "?")
-                while True:
-                    try: 
-                        delete_course = str(input("Enter yes or no : ")).lower()
-                    except ValueError: 
-                        print("Please enter yes or no")
-                        continue
-                    if (delete_course == "yes"):
-                        for course in courses: 
-                            if (course.name == name):
+                    print("Are you sure you want to delete all courses?")
+                    while True:
+                        try:
+                            delete_all_courses = str(input("Enter yes or no : "))
+                        except ValueError:
+                            print("Please enter yes or no.")
+                            continue
+                        if (delete_all_courses == "yes"):
+                            for course in courses:
                                 courses.remove(course)
+                            break
+                        elif (delete_all_courses == "no"):
+                            print("No courses deleted. If you want to delete a course, use the delete command again.")
+                            break
+                        else:
+                            print("Please enter yes or no.")
+                else :
+                    while True:
+                        try:
+                            name = str(input("What is the name of the course? : "))
+                        except ValueError:
+                            print("Invalid input. Please enter a string.")
+                            continue
+                        already_exists = False
+                        for course in courses:
+                            if (course.name == name):
+                                already_exists = True
                                 break
-                        break     
-                    elif (delete_course == "no"):
-                        break
-                    else:
-                        print("Please enter yes or no")
+                        if (not(already_exists)):
+                            print("This course does not exist. Please enter a valid course.")
+                        else:
+                            break
+                    
+                    print("Are you sure you want to delete the course", name, "?")
+                    while True:
+                        try: 
+                            delete_course = str(input("Enter yes or no : ")).lower()
+                        except ValueError: 
+                            print("Please enter yes or no")
+                            continue
+                        if (delete_course == "yes"):
+                            for course in courses: 
+                                if (course.name == name):
+                                    courses.remove(course)
+                                    break
+                            break     
+                        elif (delete_course == "no"):
+                            break
+                        else:
+                            print("Please enter yes or no")
             else:
                 print("Please enter a valid command. Use the command \'help\'.")
 
@@ -300,38 +315,56 @@ def main():
                     print("There are no assignments in this course.")
                     break
 
-                while True:
-                    try:
-                        name = str(input("What is the name of the assignment? : "))
-                    except ValueError:
-                        print("Invalid input. Please enter a string.")
-                        continue
-                    already_exists = False
-                    for assignment in courses[course_index].assignments:
-                        if (assignment.name == name):
-                            already_exists = True
-                            break
-                    if (not(already_exists)):
-                        print("This assignment does not exist. Please enter a valid assignment.")
-                    else:
-                        break
-
-                print("Are you sure you want to delete the assignment", name, "?")
-                while True:
-                    try: 
-                        delete_assignment = str(input("Enter yes or no : ")).lower()
-                    except ValueError: 
-                        print("Please enter yes or no")
-                        continue
-                    if (delete_assignment == "yes"):
-                        for assignment in courses[course_index].assignments: 
-                            if (assignment.name == name):
+                if (commandList[2] == "all"):
+                    print("Are you sure you want to delete all assignments?")
+                    while True:
+                        try:
+                            delete_all_assignments = str(input("Enter yes or no : "))
+                        except ValueError:
+                            print("Please enter yes or no.")
+                            continue
+                        if (delete_all_assignments == "yes"):
+                            for assignment in courses[course_index].assignments:
                                 courses[course_index].assignments.remove(assignment)
+                            break
+                        elif (delete_all_assignments == "no"):
+                            print("No assignments deleted. If you want to delete a assignment, use the delete command again.")
+                            break
+                        else:
+                            print("Please enter yes or no.")
+                else :
+                    while True:
+                        try:
+                            name = str(input("What is the name of the assignment? : "))
+                        except ValueError:
+                            print("Invalid input. Please enter a string.")
+                            continue
+                        already_exists = False
+                        for assignment in courses[course_index].assignments:
+                            if (assignment.name == name):
+                                already_exists = True
                                 break
-                    elif (delete_assignment == "no"):
-                        break
-                    else:
-                        print("Please enter yes or no")
+                        if (not(already_exists)):
+                            print("This assignment does not exist. Please enter a valid assignment.")
+                        else:
+                            break
+
+                    print("Are you sure you want to delete the assignment", name, "?")
+                    while True:
+                        try: 
+                            delete_assignment = str(input("Enter yes or no : ")).lower()
+                        except ValueError: 
+                            print("Please enter yes or no")
+                            continue
+                        if (delete_assignment == "yes"):
+                            for assignment in courses[course_index].assignments: 
+                                if (assignment.name == name):
+                                    courses[course_index].assignments.remove(assignment)
+                                    break
+                        elif (delete_assignment == "no"):
+                            break
+                        else:
+                            print("Please enter yes or no")
             else :
                 print("Please enter a valid command. Use the command \'help\'")
 
@@ -441,38 +474,56 @@ def main():
                     print("There are no exams in this course.")
                     break
 
-                while True:
-                    try:
-                        name = str(input("What is the name of the exam? : "))
-                    except ValueError:
-                        print("Invalid input. Please enter a string.")
-                        continue
-                    already_exists = False
-                    for exam in courses[course_index].exams:
-                        if (exam.name == name):
-                            already_exists = True
-                            break
-                    if (not(already_exists)):
-                        print("This exam does not exist. Please enter a valid exam.")
-                    else:
-                        break
-
-                print("Are you sure you want to delete the exam", name, "?")
-                while True:
-                    try: 
-                        delete_exam = str(input("Enter yes or no : ")).lower()
-                    except ValueError: 
-                        print("Please enter yes or no")
-                        continue
-                    if (delete_exam == "yes"):
-                        for exam in courses[course_index].exams: 
-                            if (exam.name == name):
+                if (commandList[2] == "all"):
+                    print("Are you sure you want to delete all exams?")
+                    while True:
+                        try:
+                            delete_all_exams = str(input("Enter yes or no : "))
+                        except ValueError:
+                            print("Please enter yes or no.")
+                            continue
+                        if (delete_all_exams == "yes"):
+                            for exam in courses[course_index].exams:
                                 courses[course_index].exams.remove(exam)
+                            break
+                        elif (delete_all_exams == "no"):
+                            print("No exams deleted. If you want to delete a exam, use the delete command again.")
+                            break
+                        else:
+                            print("Please enter yes or no.")
+                else:
+                    while True:
+                        try:
+                            name = str(input("What is the name of the exam? : "))
+                        except ValueError:
+                            print("Invalid input. Please enter a string.")
+                            continue
+                        already_exists = False
+                        for exam in courses[course_index].exams:
+                            if (exam.name == name):
+                                already_exists = True
                                 break
-                    elif (delete_exam == "no"):
-                        break
-                    else:
-                        print("Please enter yes or no")
+                        if (not(already_exists)):
+                            print("This exam does not exist. Please enter a valid exam.")
+                        else:
+                            break
+
+                    print("Are you sure you want to delete the exam", name, "?")
+                    while True:
+                        try: 
+                            delete_exam = str(input("Enter yes or no : ")).lower()
+                        except ValueError: 
+                            print("Please enter yes or no")
+                            continue
+                        if (delete_exam == "yes"):
+                            for exam in courses[course_index].exams: 
+                                if (exam.name == name):
+                                    courses[course_index].exams.remove(exam)
+                                    break
+                        elif (delete_exam == "no"):
+                            break
+                        else:
+                            print("Please enter yes or no")
             else :
                 print("Please enter a valid command. Use the command \'help\'")
 
