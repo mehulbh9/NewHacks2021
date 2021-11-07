@@ -12,10 +12,13 @@ def calculateTime(courses, days):
             assignmentDueDateList.append(assignment.getDay())
     
     for day in days:
-        totalTimeFree += day.totalTime()
+        totalTimeFree += day.timetotal()
 
     targetTimeRatio = totalTimeWork/totalTimeFree
-    
+
+    for day in days:
+        day.targetWork() = float(targetTimeRatio * day.timetotal())
+
     
     #finding earliest due date
     while (len(assignmentList) > 0):
