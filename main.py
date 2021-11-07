@@ -19,6 +19,28 @@ def checkNumInputs(list, length):
     else:
         return True
 
+def reflectAssignment(asm, course):
+    print("How do you feel about your recent assignment "+asm.name+" from the course "+course.name+"?")
+    while True:
+        emotion = str(input("I feel [bad/ok/good]: ")).lower()
+        if (emotion == "bad" and course.difficulty > 1):
+            course.difficulty -= 1
+            break
+        elif (emotion == "good" and course.difficulty < 5):
+            course.difficulty += 1
+            break
+
+def reflectExam(asm, course):
+    print("How do you feel about your recent exam "+asm.name+" from the course "+course.name+"?")
+    while True:
+        emotion = str(input("I feel [bad/ok/good]: ")).lower()
+        if (emotion == "bad" and course.difficulty > 1):
+            course.difficulty -= 1
+            break
+        elif (emotion == "good" and course.difficulty < 5):
+            course.difficulty += 1
+            break          
+    
     
 def printHelp():
     print("type 'help [command]' to see arguments of [command]")
@@ -26,15 +48,25 @@ def printHelp():
 
 def main():
     namesOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] #array of names of the week in string
-    keywordList = ["help", "course", "assignment", "time", "print", "list"]
     daysOfTheWeek = [] #array of Day objects
     courses = [] #array of Course objects
     exit = False #whether or not while loop continues
+    dayinYear = int(datetime.datetime.now().strftime("%j"))
 
     courses = (readWriteFile.readFile("testFile.txt"))
 
     for name in namesOfTheWeek:
         daysOfTheWeek.append(makeDay(name))
+
+    for course in courses:
+        for assignment in course.assignments:
+            if (dayinYear > assignment.getDay()):
+                reflectAssignment(assignment, course)
+                course.assignments.remove(assignment)
+        for exam in course.exams:
+            if (dayinYear > assignment.getDay()):
+                reflectExam(exam, course)
+                course.exam.remove(exam)
 
     while(not exit):
         try : 
