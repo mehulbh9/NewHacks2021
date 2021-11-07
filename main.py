@@ -461,6 +461,7 @@ def main():
             todaysDate = int(todaysDatetime.strftime("%j"))
             todaysDateName = todaysDatetime.strftime("%A")
             dayIndex = 0
+            placedDayIndex = 0
 
             if (todaysDate <= 120):
                 todaysDate+=366
@@ -482,7 +483,7 @@ def main():
             for day in daysOfTheWeek:
                 if (todaysDateName != day.name):
                     dayIndex+=1
-
+                day.timeFree = day.timeTotal
                 day.targetTime = float(targetTimeRatio * day.timeTotal)
 
                 
@@ -503,6 +504,8 @@ def main():
                 while (tempDate != assignmentDueDateList[lowestIndex]):
                     if (timeDifference > abs(assignmentTime[lowestIndex] - daysOfTheWeek[dayIndex].targetTime)):
                         timeDifference = abs(assignmentTime[lowestIndex] - daysOfTheWeek[dayIndex].targetTime)
+                        placedDayIndex = dayIndex
+
                         
                     tempDate+=1
 
@@ -511,9 +514,10 @@ def main():
                     elif (dayIndex == 6):
                         dayIndex = 0
 
-                daysOfTheWeek[dayIndex].assignments.append(assignmentList[lowestIndex])
-                daysOfTheWeek[dayIndex].timeWork += assignmentTime[lowestIndex]
-                daysOfTheWeek[dayIndex].targetTime -= assignmentTime[lowestIndex]
+                ((daysOfTheWeek[placedDayIndex]).assignments).append(assignmentList[lowestIndex])
+                daysOfTheWeek[placedDayIndex].timeWork += assignmentTime[lowestIndex]
+                daysOfTheWeek[placedDayIndex].targetTime -= assignmentTime[lowestIndex]
+                daysOfTheWeek[placedDayIndex].timeFree -= assignmentTime[lowestIndex]
                 assignmentTime.pop(lowestIndex)
                 assignmentList.pop(lowestIndex)
                 assignmentDueDateList.pop(lowestIndex)
@@ -527,7 +531,7 @@ def main():
             else:
                 printDay = False
                 for day in daysOfTheWeek:
-                    if (day.name() == commandList[1]):
+                    if (day.name == commandList[1]):
                         print(day)
                         printDay = True
                         break
@@ -545,7 +549,7 @@ def main():
             else:
                 printed = False
                 for course in courses:
-                    if (commandList[1] == courses):
+                    if (commandList[1] == course.name):
                         print(course)
                         printed = True
                 if (not printed):
