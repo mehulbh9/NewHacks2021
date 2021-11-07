@@ -1,6 +1,7 @@
 import datetime
 import readWriteFile
 import timer
+import readWriteDay
 from assignment import Assignment
 from course import Course
 from day import Day
@@ -57,6 +58,7 @@ def main():
     today = datetime.datetime.now().strftime("%A")
     found = False
     courses = (readWriteFile.readFile("testFile.txt"))
+    dayDictionary = readWriteDay.readDays("testFile3.txt")
 
     for name in namesOfTheWeek:
         
@@ -65,6 +67,9 @@ def main():
         if ((found == True) ^ (name == today)):
             found = True
             daysOfTheWeek.append(makeDay(name))
+
+    for day in daysOfTheWeek:
+        day.timeTotal = dayDictionary[day.name]
         
     for course in courses:
         for assignment in course.assignments:
