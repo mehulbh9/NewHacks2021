@@ -48,16 +48,27 @@ def printHelp():
     print("List of Commands: \nhelp \ncourse \nassignment \ntime \nprint \nlist")
 
 def main():
-    namesOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] #array of names of the week in string
+    namesOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] #array of names of the week in string
     daysOfTheWeek = [] #array of Day objects
     courses = [] #array of Course objects
     exit = False #whether or not while loop continues
     dayinYear = int(datetime.datetime.now().strftime("%j"))
 
+    today = datetime.datetime.now().strftime("%A")
+    found = False
     courses = (readWriteFile.readFile("testFile.txt"))
 
     for name in namesOfTheWeek:
-        daysOfTheWeek.append(makeDay(name))
+        
+        if (found == True and name == today):
+            break
+        if ((found == True) ^ (name == today)):
+            found = True
+            daysOfTheWeek.append(makeDay(name))
+    
+    ##for day in daysOfTheWeek:
+    #    print(day.name)
+        
 
     for course in courses:
         for assignment in course.assignments:
@@ -497,8 +508,7 @@ def main():
             targetTimeRatio = 0.0
             todaysDatetime = datetime.datetime.now()
             todaysDate = int(todaysDatetime.strftime("%j"))
-            dayIndex = int(todaysDatetime.strftime("%w"))
-            dayIndex -= 1
+            dayIndex = 0
             foundDate = False
             outofTime = 0
 
@@ -522,7 +532,7 @@ def main():
             for day in daysOfTheWeek:
                 totalTimeFree += day.timeTotal
 
-            targetTimeRatio = totalTimeWork/totalTimeFree
+            targetTimeRatio = 1 if totalTimeFree == 0 else totalTimeWork/totalTimeFree
 
             for day in daysOfTheWeek:
                 day.timeFree = day.timeTotal
@@ -564,6 +574,7 @@ def main():
                 #print(placedDayIndex)
                 
                 if (not foundDate):
+                    #print(dayIndex)
                     placedDayIndex = dayIndex+outofTime if dayIndex+outofTime <= 6 else 0
                     outofTime+=1
                     #print("date not found")
