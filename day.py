@@ -3,7 +3,7 @@ class Day:
     timeTotal = 0
     timeWork = 0
     timeFree = 0
-    
+    assignments = []
 
     def __init__(self, dayofweek):
         self.name = dayofweek
