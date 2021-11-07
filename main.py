@@ -100,25 +100,31 @@ def main():
                 helpcom = commandList[1]
                 if (helpcom == "help"):
                     print("Description: used to show format of other commands")
-                    print("help [command]")
+                    print("Command: help [command]")
                 elif (helpcom == "course"):
-                    print("Description: used to add or delete a course")
-                    print("course [add/delete]")
+                    print("Description: used to add or delete, or change the priority or difficult of a course")
+                    print("Command: course [add/delete/priority/difficulty]")
+                    print("note: [delete all] can be used to delete all courses.")
                 elif (helpcom == "assignment"):
                     print("Description: used to add or delete an assignment from a course")
-                    print("assignment [add/delete]")
-                elif (helpcom == "time"):
-                    print("Description: used to set the total time available of a certain day of week")
-                    print("time [day of the week] [total time available]")
-                elif (helpcom == "print"):
-                    print("Description: prints the schedule of a day, or every day")
-                    print("print ['day'/all]")
-                elif (helpcom == "list"):
-                    print("Description: prints all the courses, assignments, and exams")
-                    print("list ['course'/all]")
+                    print("Command: assignment [add/delete]")
+                    print("note: [delete all] can be used to delete all assignments.")
                 elif (helpcom == "exam"):
                     print("Description: used to add or delete an exam from a course")
-                    print("exam [add/delete]")
+                    print("Command: exam [add/delete]")
+                    print("note: [delete all] can be used to delete all exams.")
+                elif (helpcom == "time"):
+                    print("Description: used to set the total time available of a certain day of week")
+                    print("Command: time [day of the week] [total time available]")
+                elif (helpcom == "print"):
+                    print("Description: prints the schedule of a day, or every day")
+                    print("Command: print ['day'/all]")
+                elif (helpcom == "list"):
+                    print("Description: prints all the courses, assignments, and exams")
+                    print("Command: list ['course'/all]")
+                elif (helpcom == "pomodoro"):
+                    print("Description: use to start a pomodoro timer for a specified time.")
+                    print("Command: pomodoro")
                 
         elif (keyword == "course"): #course
             if (commandList[1] == "add"):
