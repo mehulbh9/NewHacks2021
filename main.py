@@ -165,6 +165,9 @@ def main():
                 courses.append(Course(name, priority, difficulty))
 
             elif (commandList[1] == "delete"):
+                if (commandList[2] == "all"):
+                    pass
+                
                 while True:
                     try:
                         name = str(input("What is the name of the course? : "))
@@ -634,9 +637,9 @@ def main():
                     except ValueError:
                         print("Please enter a number.")
                         continue
-                    if (time < 0):
+                    if (minutes < 0):
                         print("Please enter a valid amount of time.")
-                    elif (time > 60):
+                    elif (minutes > 60):
                         print("It is not recommended to work for more than 60 minutes at a time.")
                         print("Taking more frequent breaks will increase your productivity.")
                     else:
