@@ -1,8 +1,8 @@
 from assignment import Assignment
 from course import Course
-from day import Day
 from exam import Exam
 import datetime
+
 def readFile(fileName):
     file = open(fileName, "r", encoding = "UTF-8")
     line = file.readline()
@@ -47,6 +47,3 @@ def readFile(fileName):
 
         returnList.append(temp)
     return returnList
-#Math1234&1&1&HW1^2020^5^6^500,HW2^2020^5^15^500&Math^10^6^7^8^9
-myList = readFile("testFile.txt")
-print(myList[0])
