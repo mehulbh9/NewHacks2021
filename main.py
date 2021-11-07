@@ -15,7 +15,7 @@ def makeDay(name):
 def reflectAssignment(name, course):
     print("How do you feel about your recent assignment '"+str(name.split('%')[1])+"' from the course "+course.name+"?")
     while True:
-        emotion = str(input("I feel [bad/ok/good]: ")).lower()
+        emotion = str(input("I feel [bad/ok/good] : ")).lower()
         if (emotion == "good"):
             if (course.difficulty > 1):
                 course.difficulty -= 1
@@ -30,7 +30,7 @@ def reflectAssignment(name, course):
 def reflectExam(name, course):
     print("How do you feel about your recent exam '"+str(name.split('%')[1])+"' from the course "+course.name+"?")
     while True:
-        emotion = str(input("I feel [bad/ok/good]: ")).lower()
+        emotion = str(input("I feel [bad/ok/good] : ")).lower()
         if (emotion == "good"):
             if (course.difficulty > 1):
                 course.difficulty -= 1
