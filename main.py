@@ -1,5 +1,6 @@
 import datetime
 import readWriteFile
+import timer
 from assignment import Assignment
 from course import Course
 from day import Day
@@ -615,12 +616,54 @@ def main():
                         printed = True
                 if (not printed):
                     print("Course", commandList[1], "does not exist. Please enter a valid course.")
+        elif (keyword == "pomodoro"):
+            
+            print("How long do you want to work for?")
+            while True:
+                try:
+                    minutes = int(input("Enter time in minutes : "))
+                except ValueError:
+                    print("Please enter a number.")
+                    continue
+                if (time < 0):
+                    print("Please enter a valid amount of time.")
+                elif (time > 60):
+                    print("It is not recommended to work for more than 60 minutes at a time.")
+                    print("Taking more frequent breaks will increase your productivity.")
+                else:
+                    break
+            while True:
+                try:
+                    start_timer = str(input("Would you like to start the timer? (yes or no) : ")).lower()
+                except ValueError:
+                    print("Please enter yes or no.")
+                if (start_timer == "yes"):
+                    timer.countdown(minutes * 60)
+                    print("Timer is up. Time to take a break for 5 minutes.")
+                    timer.countdown(300)
+                    print("Break time is over. Would you like to start another pomodoro timer?")
+                    
+                    while True:
+                        another_timer = str(input("Enter yes or no: "))
+                        if 
+
+                    break
+                elif (start_timer == "no"):
+                    print("Okay, use the pomodoro command again when you are ready to start the timer.")
+                else :
+                    print()
+            
+            
+
+
 
         elif (keyword == "exit"):
             print("Goodbye")
             exit = True
         else:
             print("Please enter a valid command.")
+
+
     
     readWriteFile.writeFile(courses, "testFile2.txt")
 
