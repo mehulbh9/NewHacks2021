@@ -18,14 +18,49 @@ def reflectAssignment(name, course):
         emotion = str(input("I feel [bad/ok/good] : ")).lower()
         if (emotion == "good"):
             if (course.difficulty > 1):
-                course.difficulty -= 1
+                print("Would you like to decrease the difficulty of " + course.name + "?")
+                while True:
+                    try:
+                        change_difficulty = str(input("Enter yes or no : "))
+                    except ValueError:
+                        print("Please enter yes or no.")
+                    if (change_difficulty == "yes"):
+                        course.difficulty -= 1
+                        print("Course " + course.name + " difficulty has decreased to " + str(course.difficulty) + " and assignments should take 10% less time.")
+                        break
+                    elif (change_difficulty == "no"):
+                        print("Course " + course.name + " difficulty remains the same and assignments should take about the same time.")
+                        break
+                    else:
+                        print("Please enter yes or no.")
+            else: 
+                print("Course " + course.name + " has minimum difficulty. Assignments should take about the same time.")
             break
-        elif (emotion == "bad" and course.difficulty < 5):
+        elif (emotion == "bad"):
             if (course.difficulty < 5):
-                course.difficulty += 1
+                print("Would you like to increase the difficulty of " + course.name + "?")
+                while True:
+                    try:
+                        change_difficulty = str(input("Enter yes or no : "))
+                    except ValueError:
+                        print("Please enter yes or no.")
+                    if (change_difficulty == "yes"):
+                        course.difficulty += 1
+                        print("Course " + course.name + " difficulty has increased to " + str(course.difficulty) + " and assignments should take 10% more time.")
+                        break
+                    elif (change_difficulty == "no"):
+                        print("Course " + course.name + " difficulty remains the same and assignments should take about the same time.")
+                        break
+                    else:
+                        print("Please enter yes or no.")
+            else :
+                print("Course " + course.name + " has maximum difficulty. Assignments should take about the same time.")
             break 
         elif (emotion == "ok"):
+            print("Course " + course.name + " difficulty remains the same and assignments should take about the same time.")
             break  
+        else : 
+            print("Please enter good, ok, or bad.")
 
 def reflectExam(name, course):
     print("How do you feel about your recent exam '"+str(name.split('%')[1])+"' from the course "+course.name+"?")
@@ -33,14 +68,49 @@ def reflectExam(name, course):
         emotion = str(input("I feel [bad/ok/good] : ")).lower()
         if (emotion == "good"):
             if (course.difficulty > 1):
-                course.difficulty -= 1
+                print("Would you like to decrease the difficulty of this exam's course " + course.name + "?")
+                while True:
+                    try:
+                        change_difficulty = str(input("Enter yes or no : "))
+                    except ValueError:
+                        print("Please enter yes or no.")
+                    if (change_difficulty == "yes"):
+                        course.difficulty -= 1
+                        print("Course " + course.name + " difficulty has decreased to " + course.difficulty + " and exams should take 10% less preparation time.")
+                        break
+                    elif (change_difficulty == "no"):
+                        print("Course " + course.name + " difficulty remains the same and exams should take about the same preparation time.")
+                        break
+                    else:
+                        print("Please enter yes or no.")
+            else:
+                print("Course " + course.name + " has minimum difficulty. Exams should take about the same preparation time.")
             break
-        elif (emotion == "bad" and course.difficulty < 5):
+        elif (emotion == "bad"):
             if (course.difficulty < 5):
-                course.difficulty += 1
+                print("Would you like to increase the difficulty of this exam's course " + course.name + "?")
+                while True:
+                    try:
+                        change_difficulty = str(input("Enter yes or no : "))
+                    except ValueError:
+                        print("Please enter yes or no.")
+                    if (change_difficulty == "yes"):
+                        course.difficulty += 1
+                        print("Course " + course.name + " difficulty has increased to " + course.difficulty + " and exams should take 10% more preparation time.")
+                        break
+                    elif (change_difficulty == "no"):
+                        print("Course " + course.name + " difficulty remains the same and exams should take about the same preparation time.")
+                        break
+                    else:
+                        print("Please enter yes or no.")
+            else : 
+                print("Course " + course.name + " has maximum difficulty. Exams should take about the same preparation time.")
             break 
         elif (emotion == "ok"):
-            break         
+            print("Course " + course.name + " difficulty remains the same and exams should take about the same preparation time.")
+            break     
+        else : 
+            print("Please enter good, ok, or bad.")
     
     
 def printHelp():
