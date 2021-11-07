@@ -573,6 +573,7 @@ def main():
         elif (keyword == "exit"):
             print("Goodbye")
             exit = True
+    readWriteFile.writeFile(courses, "testFile2.txt")
 
         
 
