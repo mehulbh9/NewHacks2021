@@ -65,11 +65,7 @@ def main():
         if ((found == True) ^ (name == today)):
             found = True
             daysOfTheWeek.append(makeDay(name))
-    
-    ##for day in daysOfTheWeek:
-    #    print(day.name)
         
-
     for course in courses:
         for assignment in course.assignments:
             if (dayinYear > assignment.getDay()):
@@ -79,7 +75,8 @@ def main():
             if (dayinYear > assignment.getDay()):
                 reflectExam(exam, course)
                 course.exam.remove(exam)
-
+    
+    
     while(not exit):
         try : 
             command = str(input(">> "))
@@ -628,46 +625,70 @@ def main():
                 if (not printed):
                     print("Course", commandList[1], "does not exist. Please enter a valid course.")
         elif (keyword == "pomodoro"):
+            restart_pomodoro = True
+            while (restart_pomodoro):
+                print("How long do you want to work for?")
+                while True:
+                    try:
+                        minutes = int(input("Enter time in minutes : "))
+                    except ValueError:
+                        print("Please enter a number.")
+                        continue
+                    if (time < 0):
+                        print("Please enter a valid amount of time.")
+                    elif (time > 60):
+                        print("It is not recommended to work for more than 60 minutes at a time.")
+                        print("Taking more frequent breaks will increase your productivity.")
+                    else:
+                        break
+                while True:
+                    try:
+                        start_timer = str(input("Would you like to start the timer? (yes or no) : ")).lower()
+                    except ValueError:
+                        print("Please enter yes or no.")
+                        continue
+                    if (start_timer == "yes"):
+                        timer.countdown(minutes * 60)
+                        print("Timer is up. Time to take a break for 5 minutes.")
+                        timer.countdown(300)
+                        print("Break time is over. Would you like to start another pomodoro timer?")
+                        while True:
+                            try: 
+                                another_timer = str(input("Enter yes or no: ")).lower()
+                            except ValueError: 
+                                print("Please enter yes or no.")
+                                continue
+                            if (another_timer == "yes"):
+                                restart_pomodoro = True
+                                break
+                            elif (another_timer == "no"):
+                                print("Okay, use the pomodoro command whenever you want to start a new pomodoro timer.")
+                                restart_pomodoro = False
+                                break
+                            else:
+                                print("Please enter yes or no.")
+                        break
+                    elif (start_timer == "no"):
+                        print("Would you like to start a different pomodoro timer?")
+                        while True:
+                            try: 
+                                another_timer = str(input("Enter yes or no: ")).lower()
+                            except ValueError: 
+                                print("Please enter yes or no.")
+                                continue
+                            if (another_timer == "yes"):
+                                restart_pomodoro = True
+                                break
+                            elif (another_timer == "no"):
+                                print("Okay, use the pomodoro command whenever you want to start a new pomodoro timer.")
+                                restart_pomodoro = False
+                                break
+                            else:
+                                print("Please enter yes or no.")
+                        break
+                    else :
+                        print("Please enter yes or no.")
             
-            print("How long do you want to work for?")
-            while True:
-                try:
-                    minutes = int(input("Enter time in minutes : "))
-                except ValueError:
-                    print("Please enter a number.")
-                    continue
-                if (time < 0):
-                    print("Please enter a valid amount of time.")
-                elif (time > 60):
-                    print("It is not recommended to work for more than 60 minutes at a time.")
-                    print("Taking more frequent breaks will increase your productivity.")
-                else:
-                    break
-            while True:
-                try:
-                    start_timer = str(input("Would you like to start the timer? (yes or no) : ")).lower()
-                except ValueError:
-                    print("Please enter yes or no.")
-                if (start_timer == "yes"):
-                    timer.countdown(minutes * 60)
-                    print("Timer is up. Time to take a break for 5 minutes.")
-                    timer.countdown(300)
-                    print("Break time is over. Would you like to start another pomodoro timer?")
-                    
-                    while True:
-                        another_timer = str(input("Enter yes or no: "))
-                        if 
-
-                    break
-                elif (start_timer == "no"):
-                    print("Okay, use the pomodoro command again when you are ready to start the timer.")
-                else :
-                    print()
-            
-            
-
-
-
         elif (keyword == "exit"):
             print("Goodbye")
             exit = True
