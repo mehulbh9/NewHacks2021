@@ -34,88 +34,6 @@ def main():
         daysOfTheWeek.append(makeDay(name))
 
     while(not exit):
-        
-        totalTimeFree = 0.0
-        totalTimeWork = 0.0
-        assignmentTime = []
-        assignmentList = []
-        assignmentDueDateList = []
-        assignmentDifficulty = []
-        assignmentPriority = []
-        targetTimeRatio = 0.0
-        targetTimeList = []
-        todaysDatetime = datetime.datetime.now()
-        todaysDate = int(todaysDatetime.strftime("%j"))
-        todaysDateName = todaysDatetime.strftime("%A")
-        dayIndex = 0
-
-        if (todaysDate <= 120):
-            todaysDate+=366
-
-        for course in courses:
-            for assignment in course.assignments():
-                totalTimeWork += assignment.time()
-                assignmentTime.append(assignment.time())
-                assignmentList.append(assignment())
-                assignmentDueDateList.append(assignment.getDay())
-                assignmentDifficulty.append(course.difficulty())
-                assignmentPriority.append(course.priority())
-            
-        for day in daysOfTheWeek:
-            totalTimeFree += day.timetotal()
-
-        targetTimeRatio = totalTimeWork/totalTimeFree
-
-        for day in daysOfTheWeek:
-            if (todaysDateName != day.name()):
-                dayIndex+=1
-
-            targetTimeList = float(targetTimeRatio * day.timeTotal())
-
-            
-        #finding earliest due date
-        while (len(assignmentList) > 0):
-            lowest = 1000   
-            lowestIndex = -1
-            tempDate = todaysDate
-            timeDifference = 10000.0
-            for i in range(len(assignmentList)):
-                if (assignmentDueDateList[i] < lowest):
-                    lowest = assignmentDueDateList[i]
-                    lowestIndex = i
-                elif (assignmentDueDateList[i] == lowest):
-                    if (assignmentPriority[i] > assignmentPriority[lowestIndex]):
-                        lowestIndex = i
-
-            while (tempDate != assignmentDueDateList[lowestIndex]):
-                if (timeDifference > abs(assignmentTime[lowestIndex] - targetTimeList[lowestIndex])):
-                    timeDifference = abs(assignmentTime[lowestIndex] - targetTimeList[lowestIndex])
-                    
-                tempDate+=1
-
-                if (dayIndex < 6):
-                    dayIndex+=1
-                elif (dayIndex == 6):
-                    dayIndex = 0
-
-            daysOfTheWeek[dayIndex].assignments().append(assignmentList[lowestIndex])
-            assignmentTime.pop(lowestIndex)
-            assignmentList.pop(lowestIndex)
-            assignmentDueDateList.pop(lowestIndex)
-            assignmentDifficulty.pop(lowestIndex)
-            assignmentPriority.pop(lowestIndex)
-            targetTimeList.pop(lowestIndex)
-
-
-
-
-
-
-
-
-
-
-        #################################################
         try : 
             command = str(input(">> "))
         except ValueError:
@@ -577,24 +495,24 @@ def main():
                 todaysDate+=366
 
             for course in courses:
-                for assignment in course.assignments():
-                    totalTimeWork += assignment.time()
-                    assignmentTime.append(assignment.time())
-                    assignmentList.append(assignment())
-                    assignmentDueDateList.append(assignment.getDay())
-                    assignmentDifficulty.append(course.difficulty())
-                    assignmentPriority.append(course.priority())
+                for assignment in course.assignments:
+                    totalTimeWork += assignment.time
+                    assignmentTime.append(assignment.time)
+                    assignmentList.append(assignment)
+                    assignmentDueDateList.append(assignment.getDay)
+                    assignmentDifficulty.append(course.difficulty)
+                    assignmentPriority.append(course.priority)
                 
             for day in daysOfTheWeek:
-                totalTimeFree += day.timetotal()
+                totalTimeFree += day.timeTotal
 
             targetTimeRatio = totalTimeWork/totalTimeFree
 
             for day in daysOfTheWeek:
-                if (todaysDateName != day.name()):
+                if (todaysDateName != day.name):
                     dayIndex+=1
 
-                day.targetTime() = float(targetTimeRatio * day.timeTotal())
+                day.targetTime = float(targetTimeRatio * day.timeTotal)
 
                 
             #finding earliest due date
@@ -612,8 +530,8 @@ def main():
                             lowestIndex = i
 
                 while (tempDate != assignmentDueDateList[lowestIndex]):
-                    if (timeDifference > abs(assignmentTime[lowestIndex] - daysOfTheWeek[tempDate].targetTime())):
-                        timeDifference = abs(assignmentTime[lowestIndex] - daysOfTheWeek[tempDate].targetTime())
+                    if (timeDifference > abs(assignmentTime[lowestIndex] - daysOfTheWeek[tempDate].targetTime)):
+                        timeDifference = abs(assignmentTime[lowestIndex] - daysOfTheWeek[tempDate].targetTime)
                         
                     tempDate+=1
 
@@ -622,9 +540,9 @@ def main():
                     elif (dayIndex == 6):
                         dayIndex = 0
 
-                daysOfTheWeek[dayIndex].assignments().append(assignmentList[lowestIndex])
-                daysOfTheWeek[dayIndex].timeWork() += assignmentTime[lowestIndex]
-                daysOfTheWeek[dayIndex].targetTime() -= assignmentTime[lowestIndex]
+                daysOfTheWeek[dayIndex].assignments.append(assignmentList[lowestIndex])
+                daysOfTheWeek[dayIndex].timeWork += assignmentTime[lowestIndex]
+                daysOfTheWeek[dayIndex].targetTime -= assignmentTime[lowestIndex]
                 assignmentTime.pop(lowestIndex)
                 assignmentList.pop(lowestIndex)
                 assignmentDueDateList.pop(lowestIndex)
