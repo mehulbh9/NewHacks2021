@@ -125,6 +125,8 @@ def main():
                 elif (helpcom == "pomodoro"):
                     print("Description: use to start a pomodoro timer for a specified time.")
                     print("Command: pomodoro")
+                else:
+                    printHelp()
                 
         elif (keyword == "course"): #course
             if (commandList[1] == "add"):

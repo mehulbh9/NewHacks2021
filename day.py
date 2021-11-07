@@ -12,7 +12,7 @@ class Day:
 
     
     def __str__(self) -> str:
-        string = self.name.ljust(9)+ ": has "+ str(len(self.assignments))+ " assignments planned, with "+ str(self.timeWork) + " minutes of work and "+str(self.timeFree)+" minutes free."
+        string = self.name.ljust(9) + ": has " + str(len(self.assignments)) + " assignments planned, with " + str(getTimeInHours(self.timeWork)) + " minutes of work and " + str(getTimeInHours(self.timeFree)) + " minutes free."
         if (len(self.assignments)>0):
             string += "\nThe assignments are:\n"
             for asm in self.assignments:
@@ -30,3 +30,21 @@ class Day:
 
     def printTime(self):
         print(self.name.ljust(9)+": "+ str(self.timeTotal).rjust(5) + " minutes")
+
+def getTimeInHours(timeInMinutes):
+    result = ""
+    hour = int(int(timeInMinutes) / 60)
+    minutes = int(timeInMinutes) % 60
+    if (hour > 0):
+        result += str(hour)
+        if (hour == 1):
+            result += " hour "
+        else : 
+            result += " hours "
+    if (minutes > 0):
+        result += str(minutes)
+        if (minutes == 1):
+            result += " minute"
+        else:
+            result += " minutes"
+    return result
