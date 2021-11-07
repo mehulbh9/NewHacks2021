@@ -248,7 +248,7 @@ def main():
                     else:
                         break
 
-                courses[course_index].assignments.append(Assignment(course[course_index].name + "%" + name, datetime.datetime(year, month, day), time))
+                courses[course_index].assignments.append(Assignment(courses[course_index].name + "%" + name, datetime.datetime(year, month, day), time))
                 
             elif (commandList[1] == "delete"):
                 print("You currently have the following courses: ")
@@ -405,7 +405,7 @@ def main():
                     else:
                         break
 
-                courses[course_index].exams.append(Exam(course[course_index].name + "%" + name, weight, time, datetime.datetime(year, month, day)))
+                courses[course_index].exams.append(Exam(courses[course_index].name + "%" + name, weight, time, datetime.datetime(year, month, day)))
                 
             elif (commandList[1] == "delete"):
                 print("You currently have the following courses: ")
@@ -499,7 +499,7 @@ def main():
                     totalTimeWork += assignment.time
                     assignmentTime.append(assignment.time)
                     assignmentList.append(assignment)
-                    assignmentDueDateList.append(assignment.getDay)
+                    assignmentDueDateList.append(assignment.getDay())
                     assignmentDifficulty.append(course.difficulty)
                     assignmentPriority.append(course.priority)
                 
