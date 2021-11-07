@@ -17,12 +17,12 @@ Automatic work load calendar that analyzes, for a user, their timetable, assignm
 
 The program contains many more features to increase productivity and manage time effectively.
 
-There is two test files `inputfile.txt` and `inputday.txt` being used with the example input but these files are not necessary (do not need to exist) and can be changed anytime
+There is two test files `inputfile.txt` and `inputday.txt` being used with the example input but these files are not necessary (do not need to exist) and can be changed anytime by the user.
 
 ### List of Commands 
 The user interacts with the program using key commands. After entering a command, the program asks for further input. 
 
-* help
+* help `command`
 * course `add` / `delete`(`all`)
 * assignment `add` / `delete`(`all`)
 * exam `add` / `delete`(`all`)
