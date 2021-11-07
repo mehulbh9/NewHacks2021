@@ -14,9 +14,9 @@ def countdown(t):
   
   
 # input time in seconds
-m = int(input("Enter the number of minutes : "))
-s = int(input("Enter the number of seconds : "))
-t = m*60 + s
+# m = int(input("Enter the number of minutes : "))
+# s = int(input("Enter the number of seconds : "))
+# t = m*60 + s
 # t = input("Enter the time in seconds : ")
   
 # function call
