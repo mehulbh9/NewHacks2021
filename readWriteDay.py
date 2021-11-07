@@ -12,6 +12,6 @@ def readDays(fileName):
         day_and_totalTime[curDay] = time
     return day_and_totalTime
 
-x = readDays("testFile3.txt")
-print(x)
+#x = readDays("testFile3.txt")
+#print(x)
 

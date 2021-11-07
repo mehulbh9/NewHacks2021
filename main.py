@@ -58,7 +58,7 @@ def main():
     today = datetime.datetime.now().strftime("%A")
     found = False
     courses = (readWriteFile.readFile("testFile.txt"))
-    dayDictionary = readWriteDay.readDays("testFile.txt")
+    dayDictionary = readWriteDay.readDays("testFile3.txt")
 
     for name in namesOfTheWeek:
         
