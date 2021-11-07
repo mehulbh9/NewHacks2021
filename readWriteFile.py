@@ -41,12 +41,73 @@ def readFile(fileName):
             day = int(examAttributes[5])
 
             date = datetime.datetime(year, month, day)
+            x = str(date)
 
             tempExam = Exam(name, weight, studytime, date)
             temp.exams.append(tempExam)
 
         returnList.append(temp)
+    file.close()
     return returnList
-#Math1234&1&1&HW1^2020^5^6^500,HW2^2020^5^15^500&Math^10^6^7^8^9
-#myList = readFile("testFile.txt")
-#print(myList[0])
+
+def writeFile(courses, fileName):
+    string = ""
+    for course in courses:
+        string += course.name + ""
+        string += "&"
+        string += str(course.priority) + ""
+        string += "&"
+        string += str(course.difficulty) + ""
+        string += "&"
+        for asn in course.assignments:
+            string += asn.name
+            string += "^"
+            
+            date_and_time = str(asn.duedate)
+            temp_date = date_and_time.split()
+            date = temp_date[0].split("-")
+
+            string += date[0]
+            string += "^"
+            string += str(int(date[1]))
+            string += "^"
+            string += str(int(date[2]))
+            string += "^"
+
+            string += str(asn.time)
+            string += ","
+
+        string = string[0: len(string) - 1]
+        string += "&"
+
+        for exam in course.exams:
+            string += exam.name
+            string += "^"
+            string += str(exam.weight)
+            string += "^"
+            string += str(exam.study_time)
+            string += "^"
+
+            date_and_time = str(exam.date)
+            temp_date = date_and_time.split()
+            date = temp_date[0].split("-")
+
+            string += date[0]
+            string += "^"
+            string += str(int(date[1]))
+            string += "^"
+            string += str(int(date[2]))
+
+            string += ","
+        string = string[0: len(string) - 1]
+        string += "*"
+    string = string[0: len(string) - 1]
+    file = open(fileName, "w", encoding = "UTF-8")
+    file.write(string)
+    file.close()
+
+
+
+#Math1234&1&1&Math1234%HW1^2020^5^6^500,Math1234%HW2^2020^5^15^500&Math1234%Midterm^10.0^6^2020^8^9
+myList = readFile("testFile.txt")
+writeFile(myList, "testFile2.txt")
