@@ -127,8 +127,8 @@ def main():
 
     today = datetime.datetime.now().strftime("%A")
     found = False
-    courses = (readWriteFile.readFile("testFile.txt"))
-    dayDictionary = readWriteDay.readDays("testFile3.txt")
+    courses = (readWriteFile.readFile("inputFile.txt"))
+    dayDictionary = readWriteDay.readDays("inputDay.txt")
 
     for name in namesOfTheWeek:
         
@@ -471,7 +471,7 @@ def main():
                     else: 
                         break
                 
-                if (len(courses[course_index]) == 0):
+                if (len(courses[course_index].assignments) == 0):
                     print("There are no assignments in this course.")
                     break
 
@@ -591,7 +591,7 @@ def main():
                 print("When is the exam?")
                 while True: 
                     try: 
-                        daymonthyear = str(input("Enter the date (day,month,year) : ")).split(",")
+                        daymonthyear = str(input("Enter the date [DD,MM,YYYY] : ")).split(",")
                     except ValueError:
                         print("Enter a valid date with the correct format.")
                         break
@@ -691,7 +691,7 @@ def main():
                 print("Please enter a valid command. Use the command \'help\'.")
 
         elif(keyword == "time"): #time
-            if (len(commandList) != 3):
+            if (len(commandList) != 3 and len(commandList) != 2):
                 print("Please enter a valid command. Use the command \'help\'.")
                 continue
             if (commandList[1] == "print"):
@@ -920,8 +920,8 @@ def main():
 
 
     
-    readWriteFile.writeFile(courses, "testFile2.txt")
-    readWriteDay.writeDays("testFile4.txt", daysOfTheWeek)
+    readWriteFile.writeFile(courses, "inputFile.txt")
+    readWriteDay.writeDays("inputDay.txt", daysOfTheWeek)
 
         
 

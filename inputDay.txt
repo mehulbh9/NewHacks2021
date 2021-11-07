@@ -1,0 +1,1 @@
+Monday^500*Tuesday^300*Wednesday^400*Thursday^150*Friday^250*Saturday^600*Sunday^350
