@@ -498,6 +498,9 @@ def main():
             todaysDate = int(todaysDatetime.strftime("%j"))
             dayIndex = int(todaysDatetime.strftime("%w"))
             dayIndex -= 1
+            foundDate = False
+            outofTime = 0
+
             if (dayIndex < 0):
                 dayIndex += 7
 
@@ -532,6 +535,8 @@ def main():
                 lowestIndex = -1
                 tempDate = todaysDate
                 timeDifference = 10000.0
+                
+                
                 for i in range(len(assignmentList)):
                     if (assignmentDueDateList[i] < lowest):
                         lowest = assignmentDueDateList[i]
@@ -540,21 +545,29 @@ def main():
                         if (assignmentPriority[i] > assignmentPriority[lowestIndex]):
                             lowestIndex = i
 
-                while (tempDate != assignmentDueDateList[lowestIndex]):
+                while (tempDate <= assignmentDueDateList[lowestIndex]):
 
                     if (timeDifference > abs((assignmentTime[lowestIndex]*(float(assignmentDifficulty[lowestIndex])*0.15+0.55)) - daysOfTheWeek[tempIndex].targetTime) and daysOfTheWeek[tempIndex].targetTime*1.25 > (assignmentTime[lowestIndex]*(float(assignmentDifficulty[lowestIndex])*0.15+0.55))):
                         timeDifference = abs(assignmentTime[lowestIndex] - daysOfTheWeek[tempIndex].targetTime)
                         #print("time difference is " + str(timeDifference))
+                        foundDate = True
                         placedDayIndex = tempIndex
 
-                        
+                    ##print(daysOfTheWeek[tempIndex].targetTime)
                     tempDate+=1
 
                     if (tempIndex < 6):
                         tempIndex+=1
                     elif (tempIndex == 6):
                         tempIndex = 0
-                ##print(placedDayIndex)
+                #print(placedDayIndex)
+                
+                if (not foundDate):
+                    placedDayIndex = dayIndex+outofTime if dayIndex+outofTime <= 6 else 0
+                    outofTime+=1
+                    #print("date not found")
+                    #print("No suitable time found for " + str((assignmentList(lowestIndex).name.split('%'))[1]) + " in course " + str((assignmentList(lowestIndex).name.split('%'))[0]))
+
                 tempName = assignmentList[lowestIndex].name
                 
                 #print(daysOfTheWeek[placedDayIndex])
