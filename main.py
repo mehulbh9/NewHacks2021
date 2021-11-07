@@ -167,6 +167,7 @@ def main():
                         print("Please enter a number between 1 and 5.")
                     else:
                         break
+
                 courses.append(Course(name, priority, difficulty))
 
             elif (commandList[1] == "delete"):
@@ -221,6 +222,75 @@ def main():
                             break
                         else:
                             print("Please enter yes or no")
+
+            elif (commandList[1] == "priority"):
+                if (len(courses) == 0):
+                    print("You do not have any courses. Please make a course first.") 
+                else:
+                    print("You currently have the following courses: ")
+                    for i in range(0, len(courses)): 
+                        print ((i + 1), ".", (courses[i].name))
+                    while True:
+                        try: 
+                            course_index = int(input("Indicate the number of the course that you want to change priority for : ")) - 1
+                        except ValueError:
+                            print("Please enter a valid number between 1 and", len(courses))
+                            continue
+                        if (course_index < 0 or course_index >= len(courses)):
+                            print("Please enter a valid number between 1 and", len(courses))
+                        else: 
+                            break
+                    print("Does the following course have low, neutral, or high priority")
+                    while True:
+                        try:
+                            str_priority = str(input("Enter the priority (low, neutral, or high) : ")).lower()
+                        except ValueError:
+                            print("Please enter low, neutral, or high.")
+                            continue
+                        if (str_priority == "low"):
+                            priority = 1
+                            break
+                        elif (str_priority == "neutral"):
+                            priority = 2
+                            break
+                        elif (str_priority == "high"):
+                            priority = 3
+                            break
+                        else: 
+                            print("Please enter low, neutral, or high.")
+                    
+                    courses[course_index].priority = priority
+                    
+            elif (commandList[1] == "difficulty"): 
+                if (len(courses) == 0):
+                    print("You do not have any courses. Please make a course first.") 
+                else:
+                    print("You currently have the following courses: ")
+                    for i in range(0, len(courses)): 
+                        print ((i + 1), ".", (courses[i].name))
+                    while True:
+                        try: 
+                            course_index = int(input("Indicate the number of the course that you want to change priority for : ")) - 1
+                        except ValueError:
+                            print("Please enter a valid number between 1 and", len(courses))
+                            continue
+                        if (course_index < 0 or course_index >= len(courses)):
+                            print("Please enter a valid number between 1 and", len(courses))
+                        else: 
+                            break
+                    while True:
+                        try: 
+                            difficulty = int(input("What would you say the difficulty of the course is out of 5? : "))
+                        except ValueError:
+                            print("Please enter a number between 1 and 5.")
+                        
+                        if (difficulty < 0 or difficulty > 5):
+                            print("Please enter a number between 1 and 5.")
+                        else:
+                            break
+                    
+                    courses[course_index].difficulty = difficulty
+                    
             else:
                 print("Please enter a valid command. Use the command \'help\'.")
 
