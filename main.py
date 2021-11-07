@@ -499,7 +499,7 @@ def main():
                     totalTimeWork += assignment.time
                     assignmentTime.append(assignment.time)
                     assignmentList.append(assignment)
-                    assignmentDueDateList.append(assignment.getDay)
+                    assignmentDueDateList.append(assignment.getDay())
                     assignmentDifficulty.append(course.difficulty)
                     assignmentPriority.append(course.priority)
                 
