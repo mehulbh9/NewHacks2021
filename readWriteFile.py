@@ -33,20 +33,21 @@ def readFile(fileName):
         for exams in list4:
             examAttributes = exams.split("^")
 
-            weight = float(examAttributes[0])
-            studytime = int(examAttributes[1])
-            year = int(examAttributes[2])
-            month = int(examAttributes[3])
-            day = int(examAttributes[4])
+            name = examAttributes[0]
+            weight = float(examAttributes[1])
+            studytime = int(examAttributes[2])
+            year = int(examAttributes[3])
+            month = int(examAttributes[4])
+            day = int(examAttributes[5])
 
             date = datetime.datetime(year, month, day)
 
-            tempExam = Exam(weight, studytime, date)
+            tempExam = Exam(name, weight, studytime, date)
             temp.exams.append(tempExam)
 
         returnList.append(temp)
     return returnList
 
-#Math1234&1&1&HW1^4^5^6,HW2^3^5^15&10^6^7^8^9
+#Math1234&1&1&HW1^2020^5^6^500,HW2^2020^5^15^500&Math^10^6^7^8^9
 myList = readFile("testFile.txt")
 print(myList[0])
