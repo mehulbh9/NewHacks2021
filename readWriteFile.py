@@ -12,7 +12,7 @@ def readFile(fileName):
     returnList = []
     for l1 in list1:
         list2 = l1.split("&")
-        temp = Course(list2[0], list2[1], list2[2])
+        temp = Course(list2[0], int(list2[1]), int(list2[2]))
 
         list3 = list2[3].split(",")
         for assignment in list3:
