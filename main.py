@@ -248,7 +248,7 @@ def main():
                     else:
                         break
 
-                courses[course_index].assignments.append(Assignment(course[course_index].name + "%" + name, datetime.datetime(year, month, day), time))
+                courses[course_index].assignments.append(Assignment(courses[course_index].name + "%" + name, datetime.datetime(year, month, day), time))
                 
             elif (commandList[1] == "delete"):
                 print("You currently have the following courses: ")
