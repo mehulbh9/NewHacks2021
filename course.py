@@ -1,6 +1,6 @@
 class Course:
     name = ""
-    priority = 0
+    priority = 2
     difficulty = 1
     assignments = []
     exams = []
